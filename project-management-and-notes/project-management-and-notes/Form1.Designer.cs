@@ -29,28 +29,29 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbProjects = new System.Windows.Forms.ListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lbProjects = new System.Windows.Forms.ListBox();
-            this.lbProjectDetails = new System.Windows.Forms.ListBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.Search = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.lbNotes = new System.Windows.Forms.ListBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lbProjectDetails = new System.Windows.Forms.ListBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.Search = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.rtbNoteDetails = new System.Windows.Forms.RichTextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lbNotes = new System.Windows.Forms.ListBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -62,6 +63,15 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Projects";
+            // 
+            // lbProjects
+            // 
+            this.lbProjects.FormattingEnabled = true;
+            this.lbProjects.Location = new System.Drawing.Point(6, 19);
+            this.lbProjects.Name = "lbProjects";
+            this.lbProjects.Size = new System.Drawing.Size(188, 381);
+            this.lbProjects.TabIndex = 0;
+            this.lbProjects.SelectedIndexChanged += new System.EventHandler(this.lbProjects_SelectedIndexChanged);
             // 
             // tabControl1
             // 
@@ -88,104 +98,6 @@
             this.tabPage1.Text = "Projects";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.Search);
-            this.tabPage2.Controls.Add(this.textBox1);
-            this.tabPage2.Controls.Add(this.groupBox4);
-            this.tabPage2.Controls.Add(this.groupBox3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(678, 473);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Notes";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.lbProjectDetails);
-            this.groupBox2.Location = new System.Drawing.Point(212, 51);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(460, 406);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Details";
-            // 
-            // lbProjects
-            // 
-            this.lbProjects.FormattingEnabled = true;
-            this.lbProjects.Location = new System.Drawing.Point(6, 19);
-            this.lbProjects.Name = "lbProjects";
-            this.lbProjects.Size = new System.Drawing.Size(188, 381);
-            this.lbProjects.TabIndex = 0;
-            this.lbProjects.SelectedIndexChanged += new System.EventHandler(this.lbProjects_SelectedIndexChanged);
-            // 
-            // lbProjectDetails
-            // 
-            this.lbProjectDetails.FormattingEnabled = true;
-            this.lbProjectDetails.Location = new System.Drawing.Point(6, 19);
-            this.lbProjectDetails.Name = "lbProjectDetails";
-            this.lbProjectDetails.Size = new System.Drawing.Size(448, 381);
-            this.lbProjectDetails.TabIndex = 0;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.lbNotes);
-            this.groupBox3.Location = new System.Drawing.Point(6, 62);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(192, 405);
-            this.groupBox3.TabIndex = 0;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Notes";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.rtbNoteDetails);
-            this.groupBox4.Location = new System.Drawing.Point(204, 62);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(468, 405);
-            this.groupBox4.TabIndex = 1;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Note details";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(6, 36);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(666, 20);
-            this.textBox1.TabIndex = 2;
-            // 
-            // Search
-            // 
-            this.Search.AutoSize = true;
-            this.Search.Location = new System.Drawing.Point(6, 20);
-            this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(41, 13);
-            this.Search.TabIndex = 3;
-            this.Search.Text = "Search";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Sort by";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Date",
-            "Name",
-            "Status"});
-            this.comboBox1.Location = new System.Drawing.Point(15, 21);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(191, 21);
-            this.comboBox1.TabIndex = 3;
-            // 
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
@@ -199,6 +111,104 @@
             this.comboBox2.Size = new System.Drawing.Size(148, 21);
             this.comboBox2.TabIndex = 4;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Date",
+            "Name",
+            "Status"});
+            this.comboBox1.Location = new System.Drawing.Point(15, 21);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(191, 21);
+            this.comboBox1.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Sort by";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lbProjectDetails);
+            this.groupBox2.Location = new System.Drawing.Point(212, 51);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(460, 406);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Details";
+            // 
+            // lbProjectDetails
+            // 
+            this.lbProjectDetails.FormattingEnabled = true;
+            this.lbProjectDetails.Location = new System.Drawing.Point(6, 19);
+            this.lbProjectDetails.Name = "lbProjectDetails";
+            this.lbProjectDetails.Size = new System.Drawing.Size(448, 381);
+            this.lbProjectDetails.TabIndex = 0;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.btnSearch);
+            this.tabPage2.Controls.Add(this.Search);
+            this.tabPage2.Controls.Add(this.textBox1);
+            this.tabPage2.Controls.Add(this.groupBox4);
+            this.tabPage2.Controls.Add(this.groupBox3);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(678, 473);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Notes";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // Search
+            // 
+            this.Search.AutoSize = true;
+            this.Search.Location = new System.Drawing.Point(6, 20);
+            this.Search.Name = "Search";
+            this.Search.Size = new System.Drawing.Size(41, 13);
+            this.Search.TabIndex = 3;
+            this.Search.Text = "Search";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(6, 36);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(559, 20);
+            this.textBox1.TabIndex = 2;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.rtbNoteDetails);
+            this.groupBox4.Location = new System.Drawing.Point(204, 62);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(468, 405);
+            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Note details";
+            // 
+            // rtbNoteDetails
+            // 
+            this.rtbNoteDetails.Location = new System.Drawing.Point(6, 19);
+            this.rtbNoteDetails.Name = "rtbNoteDetails";
+            this.rtbNoteDetails.Size = new System.Drawing.Size(456, 380);
+            this.rtbNoteDetails.TabIndex = 0;
+            this.rtbNoteDetails.Text = "";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lbNotes);
+            this.groupBox3.Location = new System.Drawing.Point(6, 62);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(192, 405);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Notes";
+            // 
             // lbNotes
             // 
             this.lbNotes.FormattingEnabled = true;
@@ -208,13 +218,14 @@
             this.lbNotes.TabIndex = 0;
             this.lbNotes.SelectedIndexChanged += new System.EventHandler(this.lbNotes_SelectedIndexChanged);
             // 
-            // rtbNoteDetails
+            // btnSearch
             // 
-            this.rtbNoteDetails.Location = new System.Drawing.Point(6, 19);
-            this.rtbNoteDetails.Name = "rtbNoteDetails";
-            this.rtbNoteDetails.Size = new System.Drawing.Size(456, 380);
-            this.rtbNoteDetails.TabIndex = 0;
-            this.rtbNoteDetails.Text = "";
+            this.btnSearch.Location = new System.Drawing.Point(583, 36);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 4;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -228,11 +239,11 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -255,6 +266,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RichTextBox rtbNoteDetails;
         private System.Windows.Forms.ListBox lbNotes;
+        private System.Windows.Forms.Button btnSearch;
     }
 }
 
