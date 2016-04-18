@@ -35,18 +35,16 @@ namespace project_management_and_notes
             lbNotes.Items.Add(n3);
         }
 
-        private void lbProjects_SelectedIndexChanged(object sender, EventArgs e)
-        {   
-            Project selected = lbProjects.SelectedItem as Project;
-            lbProjectDetails.Items.Clear();
-            lbProjectDetails.Items.Add(selected.GetDetails());
-        }
-
         private void lbNotes_SelectedIndexChanged(object sender, EventArgs e)
         {
             Note selected = lbNotes.SelectedItem as Note;
             rtbNoteDetails.Clear();
             rtbNoteDetails.Text = selected.GetContent();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            tabControl1.SelectTab(1);
         }
     }
 }

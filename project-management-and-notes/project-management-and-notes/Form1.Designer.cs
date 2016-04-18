@@ -36,15 +36,23 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lbProjectDetails = new System.Windows.Forms.ListBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.Search = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.rtbNoteDetails = new System.Windows.Forms.RichTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lbNotes = new System.Windows.Forms.ListBox();
-            this.btnSearch = new System.Windows.Forms.Button();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -66,12 +74,10 @@
             // 
             // lbProjects
             // 
-            this.lbProjects.FormattingEnabled = true;
-            this.lbProjects.Location = new System.Drawing.Point(6, 19);
+            this.lbProjects.Location = new System.Drawing.Point(9, 19);
             this.lbProjects.Name = "lbProjects";
-            this.lbProjects.Size = new System.Drawing.Size(188, 381);
+            this.lbProjects.Size = new System.Drawing.Size(185, 381);
             this.lbProjects.TabIndex = 0;
-            this.lbProjects.SelectedIndexChanged += new System.EventHandler(this.lbProjects_SelectedIndexChanged);
             // 
             // tabControl1
             // 
@@ -134,7 +140,15 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.lbProjectDetails);
+            this.groupBox2.Controls.Add(this.linkLabel1);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.comboBox3);
+            this.groupBox2.Controls.Add(this.textBox4);
+            this.groupBox2.Controls.Add(this.textBox3);
+            this.groupBox2.Controls.Add(this.textBox2);
             this.groupBox2.Location = new System.Drawing.Point(212, 51);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(460, 406);
@@ -142,13 +156,70 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Details";
             // 
-            // lbProjectDetails
+            // label7
             // 
-            this.lbProjectDetails.FormattingEnabled = true;
-            this.lbProjectDetails.Location = new System.Drawing.Point(6, 19);
-            this.lbProjectDetails.Name = "lbProjectDetails";
-            this.lbProjectDetails.Size = new System.Drawing.Size(448, 381);
-            this.lbProjectDetails.TabIndex = 0;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 132);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(37, 13);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "Status";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(232, 37);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Finish Date";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(126, 38);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Deadline";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 38);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(55, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Start Date";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(10, 148);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(121, 21);
+            this.comboBox3.TabIndex = 5;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(232, 57);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 20);
+            this.textBox4.TabIndex = 2;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(126, 57);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 20);
+            this.textBox3.TabIndex = 1;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(6, 57);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -164,6 +235,15 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Notes";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(583, 36);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 4;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
             // 
             // Search
             // 
@@ -218,14 +298,16 @@
             this.lbNotes.TabIndex = 0;
             this.lbNotes.SelectedIndexChanged += new System.EventHandler(this.lbNotes_SelectedIndexChanged);
             // 
-            // btnSearch
+            // linkLabel1
             // 
-            this.btnSearch.Location = new System.Drawing.Point(583, 36);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 4;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(7, 291);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(124, 13);
+            this.linkLabel1.TabIndex = 12;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "See notes for this project";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // Form1
             // 
@@ -240,6 +322,7 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -258,7 +341,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ListBox lbProjectDetails;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label Search;
         private System.Windows.Forms.TextBox textBox1;
@@ -267,6 +349,15 @@
         private System.Windows.Forms.RichTextBox rtbNoteDetails;
         private System.Windows.Forms.ListBox lbNotes;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 
