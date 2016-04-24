@@ -7,3 +7,5 @@ C:\Users\Borche Jankovski\Documents\GitHub\project-managemenet-and-notes\project
 C:\Users\Borche Jankovski\Documents\GitHub\project-managemenet-and-notes\project-management-and-notes\project-management-and-notes\obj\Debug\project-management-and-notes.csproj.GenerateResource.Cache
 C:\Users\Borche Jankovski\Documents\GitHub\project-managemenet-and-notes\project-management-and-notes\project-management-and-notes\obj\Debug\project-management-and-notes.exe
 C:\Users\Borche Jankovski\Documents\GitHub\project-managemenet-and-notes\project-management-and-notes\project-management-and-notes\obj\Debug\project-management-and-notes.pdb
+C:\Users\Borche Jankovski\Documents\GitHub\project-managemenet-and-notes\project-management-and-notes\project-management-and-notes\obj\Debug\project_management_and_notes.CreateNewProject.resources
+C:\Users\Borche Jankovski\Documents\GitHub\project-managemenet-and-notes\project-management-and-notes\project-management-and-notes\obj\Debug\project_management_and_notes.CreateNewAssignmentForm.resources

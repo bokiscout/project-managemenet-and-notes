@@ -12,39 +12,110 @@ namespace project_management_and_notes
 {
     public partial class Form1 : Form
     {
-        private List<Project> projects { get; set; }
-        private List<Note> notes { get; set; }
+        //private List<Project> projects { get; set; }
+        //private List<Note> notes { get; set; }
 
         public Form1()
         {
             InitializeComponent();
-            Project p1 = new Project("First Project", "01.05.2013");
-            Project p2 = new Project("Second Project", "01.06.2013");
-            Project p3 = new Project("Third Project", "10.06.2013");
+            DateTime deadline = DateTime.Now;
+            Project p1 = new Project("First Project", "Project for Mr. I", deadline);
+            p1.SetClientName("For you");
+            p1.SetName("Project one new name");
+            
+            Assignment a = new Assignment();
+            a.SetIsDone(true);
+            a.SetTodo("Do nothing, empty assignment");
+            p1.AddAssignment(a);
 
-            lbProjects.Items.Add(p1);
-            lbProjects.Items.Add(p2);
-            lbProjects.Items.Add(p3);
+            CssCode c = new CssCode();
+            c.SetCode(@"<p>
+</p>");
+            c.SetDescription("paragraph");
 
-            Note n1 = new Note("Note one", "");
-            Note n2 = new Note("Note two", "");
-            Note n3 = new Note("Note three", "");
+            p1.AddCssCode(c);
 
-            lbNotes.Items.Add(n1);
-            lbNotes.Items.Add(n2);
-            lbNotes.Items.Add(n3);
+            //Project p2 = new Project("Second Project", "Project for Mr. I", deadline);
+            //Project p3 = new Project("Third Project", "Project for Mr. I", deadline);
+
+            //lbProjects.Items.Add(p1);
+            //lbProjects.Items.Add(p2);
+            //lbProjects.Items.Add(p3);
         }
 
-        private void lbNotes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Note selected = lbNotes.SelectedItem as Note;
-            rtbNoteDetails.Clear();
-            rtbNoteDetails.Text = selected.GetContent();
-        }
+
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             tabControl1.SelectTab(1);
         }
+
+        private void lbProjects_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Project project = lbProjects.SelectedItem as Project;
+            this.RefreshProjectDetail(project);
+        }
+
+        private void RefreshProjectDetail(Project p)
+        {
+            tbProjectName.Text = p.GetName();
+            tbClientName.Text = p.GetClientName();
+            tbStartDate.Text = p.GetDateCreatedAsString();
+            tbDeadLine.Text = p.GetDateDeadlineAsString();
+            tbLoginInfoUsername.Text = p.GetLoginInfoUsername();
+            tbLoginInfoPassword.Text = p.GetLoginInfoPassword();
+            tbLoginInfoUrl.Text = p.GetLoginInfoUrl();
+            
+            //lbAssignments.Items.Clear();
+            clbAssignments.Items.Clear();
+
+            List<Assignment> assignments = p.GetAssignments();
+            foreach (Assignment a in assignments)
+            {
+                //lbAssignments.Items.Add(a);
+                clbAssignments.Items.Add(a, a.GetIsDone());
+            }
+
+            lbCssCodes.Items.Clear();
+            List<CssCode> cssCodes = p.GetCssCodes();
+            foreach (CssCode c in cssCodes)
+            {
+                lbCssCodes.Items.Add(c);
+            }
+        }
+
+        private void lbCssCodes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CssCode c = lbCssCodes.SelectedItem as CssCode;
+            rtbCssCodeDetails.Text = c.GetCode();
+        }
+
+        private void btnAddProject_Click(object sender, EventArgs e)
+        {
+            CreateNewProject createProjectForm = new CreateNewProject();
+            if (createProjectForm.ShowDialog() == DialogResult.OK)
+            {
+                Project p = createProjectForm.GetProjet();
+                lbProjects.Items.Add(p);
+            }
+        }
+
+        private void btnAddAssignment_Click(object sender, EventArgs e)
+        {
+            CreateNewAssignmentForm createNewAssignment = new CreateNewAssignmentForm();
+            if (createNewAssignment.ShowDialog() == DialogResult.OK)
+            {
+                Assignment a = createNewAssignment.GetAssignment();
+                clbAssignments.Items.Add(a);
+            }
+        }
+
+        private void clbAssignments_SelectedValueChanged(object sender, EventArgs e)
+        {
+            Assignment a = clbAssignments.SelectedItem as Assignment;
+            a.SetIsDone(!a.GetIsDone());
+        }
+
+
     }
 }
