@@ -17,6 +17,7 @@ namespace project_management_and_notes
 
         public Form1()
         {
+            
             InitializeComponent();
             DateTime deadline = DateTime.Now;
             Project p1 = new Project("First Project", "Project for Mr. I", deadline);
@@ -62,9 +63,18 @@ namespace project_management_and_notes
             tbClientName.Text = p.GetClientName();
             tbStartDate.Text = p.GetDateCreatedAsString();
             tbDeadLine.Text = p.GetDateDeadlineAsString();
-            tbLoginInfoUsername.Text = p.GetLoginInfoUsername();
-            tbLoginInfoPassword.Text = p.GetLoginInfoPassword();
-            tbLoginInfoUrl.Text = p.GetLoginInfoUrl();
+
+            
+            tbLoginInfoPassword.Clear();
+            tbLoginInfoUrl.Clear();
+            tbLoginInfoUsername.Clear();
+            cbLoginInfo.SelectedIndex = -1;
+            cbLoginInfo.Items.Clear();
+            List<LoginInfo> loginIformations = p.GetLoginInfo();
+            foreach (LoginInfo l in loginIformations)
+            {
+                cbLoginInfo.Items.Add(l);
+            }
             
             //lbAssignments.Items.Clear();
             clbAssignments.Items.Clear();
@@ -107,6 +117,9 @@ namespace project_management_and_notes
             {
                 Assignment a = createNewAssignment.GetAssignment();
                 clbAssignments.Items.Add(a);
+
+                Project p = lbProjects.SelectedItem as Project;
+                p.AddAssignment(a);
             }
         }
 
@@ -114,6 +127,50 @@ namespace project_management_and_notes
         {
             Assignment a = clbAssignments.SelectedItem as Assignment;
             a.SetIsDone(!a.GetIsDone());
+        }
+
+        private void btnEditAssignment_Click(object sender, EventArgs e)
+        {
+            // not implemented !!!
+        }
+
+        private void btnAddLoginInfo_Click(object sender, EventArgs e)
+        {
+            CreateNewLoginInfo createNewLoginInfo = new CreateNewLoginInfo();
+            if (createNewLoginInfo.ShowDialog() == DialogResult.OK)
+            {
+                LoginInfo loginInfo = createNewLoginInfo.GetLoginInfo();
+                cbLoginInfo.Items.Add(loginInfo);
+
+                Project p = lbProjects.SelectedItem as Project;
+                p.AddLoginInfo(loginInfo);
+            }
+        }
+
+        private void cbLoginInfo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoginInfo l = cbLoginInfo.SelectedItem as LoginInfo;
+            if (l != null)
+            {
+                tbLoginInfoPassword.Text = l.GetPassword();
+                tbLoginInfoUrl.Text = l.GetUrl();
+                tbLoginInfoUsername.Text = l.GetUsername();
+            }
+        }
+
+        private void btnAddCssCode_Click(object sender, EventArgs e)
+        {
+            CreateNewCss newCssCodeForm = new CreateNewCss();
+            if (newCssCodeForm.ShowDialog() == DialogResult.OK)
+            {
+                CssCode code = newCssCodeForm.GetCssCode();
+                rtbCssCodeDetails.Text = code.GetCode();
+
+                lbCssCodes.Items.Add(code);
+
+                Project p = lbProjects.SelectedItem as Project;
+                p.AddCssCode(code);
+            }
         }
 
 

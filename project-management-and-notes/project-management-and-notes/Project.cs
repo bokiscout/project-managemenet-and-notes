@@ -16,9 +16,9 @@ namespace project_management_and_notes
                                                             // for this project to become done
         private String details { get; set; }    // some details about the project
                                                 // this is writen by the outhir of the project
-        private LoginInfo loginInfo { get; set; }   // login infomrations for current project
-                                                    // server password, database passwords etc...
-        private List<CssCode> cssCodes { get; set; }      // list of css codes created for this project
+        private List<LoginInfo> loginInfo { get; set; }     // login infomrations for current project
+                                                            // server password, database passwords etc...
+        private List<CssCode> cssCodes { get; set; }        // list of css codes created for this project
 
         public Project()
         {
@@ -29,7 +29,7 @@ namespace project_management_and_notes
             this.deadline = DateTime.Now;
             this.assignments = new List<Assignment>();
             this.details = "";
-            this.loginInfo = new LoginInfo();
+            this.loginInfo = new List<LoginInfo>();
             this.cssCodes = new List<CssCode>();
         }
 
@@ -41,7 +41,7 @@ namespace project_management_and_notes
             this.deadline = deadline;
             this.assignments = new List<Assignment>();
             this.details = "";    // pass it ass argument
-            this.loginInfo = new LoginInfo();     // create copy of login info
+            this.loginInfo = new List<LoginInfo>();     // create copy of login info
             this.cssCodes = new List<CssCode>();
         }
 
@@ -89,19 +89,14 @@ namespace project_management_and_notes
             return this.assignments;
         }
 
-        public String GetLoginInfoUsername()
+        public List<LoginInfo> GetLoginInfo()
         {
-            return loginInfo.GetUsername();
+            return loginInfo;
         }
 
-        public String GetLoginInfoPassword()
+        public void AddLoginInfo(LoginInfo info)
         {
-            return loginInfo.GetPassword();
-        }
-
-        public String GetLoginInfoUrl()
-        {
-            return loginInfo.GetUrl();
+            this.loginInfo.Add(info);
         }
 
         public String GetDetails()

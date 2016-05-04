@@ -61,5 +61,14 @@ namespace project_management_and_notes
         {
             this.userName = userName;
         }
+
+        public override string ToString()
+        {
+            // not properly implemented!!!
+            // should add name variable for each login info,
+            // or return details,
+            // or something...
+            return this.url;
+        }
     }
 }

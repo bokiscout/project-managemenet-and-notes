@@ -70,6 +70,11 @@
             this.btnAddCssCode = new System.Windows.Forms.Button();
             this.lbCssCodes = new System.Windows.Forms.ListBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.cbLoginInfo = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnAddLoginInfo = new System.Windows.Forms.Button();
+            this.btnEdiLoginInfo = new System.Windows.Forms.Button();
+            this.btnDeleteLoginInfo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -193,15 +198,20 @@
             // 
             // gbLoginInfo
             // 
+            this.gbLoginInfo.Controls.Add(this.btnDeleteLoginInfo);
+            this.gbLoginInfo.Controls.Add(this.btnEdiLoginInfo);
+            this.gbLoginInfo.Controls.Add(this.btnAddLoginInfo);
+            this.gbLoginInfo.Controls.Add(this.label10);
+            this.gbLoginInfo.Controls.Add(this.cbLoginInfo);
             this.gbLoginInfo.Controls.Add(this.label9);
             this.gbLoginInfo.Controls.Add(this.label8);
             this.gbLoginInfo.Controls.Add(this.label3);
             this.gbLoginInfo.Controls.Add(this.tbLoginInfoUsername);
             this.gbLoginInfo.Controls.Add(this.tbLoginInfoPassword);
             this.gbLoginInfo.Controls.Add(this.tbLoginInfoUrl);
-            this.gbLoginInfo.Location = new System.Drawing.Point(13, 297);
+            this.gbLoginInfo.Location = new System.Drawing.Point(13, 168);
             this.gbLoginInfo.Name = "gbLoginInfo";
-            this.gbLoginInfo.Size = new System.Drawing.Size(279, 100);
+            this.gbLoginInfo.Size = new System.Drawing.Size(279, 229);
             this.gbLoginInfo.TabIndex = 27;
             this.gbLoginInfo.TabStop = false;
             this.gbLoginInfo.Text = "LoginInfo";
@@ -209,7 +219,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(9, 77);
+            this.label9.Location = new System.Drawing.Point(9, 112);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(29, 13);
             this.label9.TabIndex = 28;
@@ -218,7 +228,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(9, 48);
+            this.label8.Location = new System.Drawing.Point(9, 89);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 13);
             this.label8.TabIndex = 27;
@@ -227,7 +237,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 22);
+            this.label3.Location = new System.Drawing.Point(9, 63);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 13);
             this.label3.TabIndex = 26;
@@ -235,21 +245,21 @@
             // 
             // tbLoginInfoUsername
             // 
-            this.tbLoginInfoUsername.Location = new System.Drawing.Point(92, 19);
+            this.tbLoginInfoUsername.Location = new System.Drawing.Point(92, 60);
             this.tbLoginInfoUsername.Name = "tbLoginInfoUsername";
             this.tbLoginInfoUsername.Size = new System.Drawing.Size(181, 20);
             this.tbLoginInfoUsername.TabIndex = 22;
             // 
             // tbLoginInfoPassword
             // 
-            this.tbLoginInfoPassword.Location = new System.Drawing.Point(92, 45);
+            this.tbLoginInfoPassword.Location = new System.Drawing.Point(92, 86);
             this.tbLoginInfoPassword.Name = "tbLoginInfoPassword";
             this.tbLoginInfoPassword.Size = new System.Drawing.Size(181, 20);
             this.tbLoginInfoPassword.TabIndex = 24;
             // 
             // tbLoginInfoUrl
             // 
-            this.tbLoginInfoUrl.Location = new System.Drawing.Point(92, 74);
+            this.tbLoginInfoUrl.Location = new System.Drawing.Point(92, 112);
             this.tbLoginInfoUrl.Name = "tbLoginInfoUrl";
             this.tbLoginInfoUrl.Size = new System.Drawing.Size(181, 20);
             this.tbLoginInfoUrl.TabIndex = 25;
@@ -283,6 +293,7 @@
             this.btnEditAssignment.TabIndex = 15;
             this.btnEditAssignment.Text = "Edit";
             this.btnEditAssignment.UseVisualStyleBackColor = true;
+            this.btnEditAssignment.Click += new System.EventHandler(this.btnEditAssignment_Click);
             // 
             // btnAddAssignment
             // 
@@ -473,6 +484,7 @@
             this.btnAddCssCode.TabIndex = 1;
             this.btnAddCssCode.Text = "Add New .css";
             this.btnAddCssCode.UseVisualStyleBackColor = true;
+            this.btnAddCssCode.Click += new System.EventHandler(this.btnAddCssCode_Click);
             // 
             // lbCssCodes
             // 
@@ -481,6 +493,52 @@
             this.lbCssCodes.Size = new System.Drawing.Size(180, 368);
             this.lbCssCodes.TabIndex = 0;
             this.lbCssCodes.SelectedIndexChanged += new System.EventHandler(this.lbCssCodes_SelectedIndexChanged);
+            // 
+            // cbLoginInfo
+            // 
+            this.cbLoginInfo.FormattingEnabled = true;
+            this.cbLoginInfo.Location = new System.Drawing.Point(92, 19);
+            this.cbLoginInfo.Name = "cbLoginInfo";
+            this.cbLoginInfo.Size = new System.Drawing.Size(181, 21);
+            this.cbLoginInfo.TabIndex = 29;
+            this.cbLoginInfo.SelectedIndexChanged += new System.EventHandler(this.cbLoginInfo_SelectedIndexChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 22);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(72, 13);
+            this.label10.TabIndex = 30;
+            this.label10.Text = "Show info for:";
+            // 
+            // btnAddLoginInfo
+            // 
+            this.btnAddLoginInfo.Location = new System.Drawing.Point(12, 140);
+            this.btnAddLoginInfo.Name = "btnAddLoginInfo";
+            this.btnAddLoginInfo.Size = new System.Drawing.Size(261, 23);
+            this.btnAddLoginInfo.TabIndex = 31;
+            this.btnAddLoginInfo.Text = "Add New login Information";
+            this.btnAddLoginInfo.UseVisualStyleBackColor = true;
+            this.btnAddLoginInfo.Click += new System.EventHandler(this.btnAddLoginInfo_Click);
+            // 
+            // btnEdiLoginInfo
+            // 
+            this.btnEdiLoginInfo.Location = new System.Drawing.Point(12, 198);
+            this.btnEdiLoginInfo.Name = "btnEdiLoginInfo";
+            this.btnEdiLoginInfo.Size = new System.Drawing.Size(261, 23);
+            this.btnEdiLoginInfo.TabIndex = 32;
+            this.btnEdiLoginInfo.Text = "Edit Selected";
+            this.btnEdiLoginInfo.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteLoginInfo
+            // 
+            this.btnDeleteLoginInfo.Location = new System.Drawing.Point(12, 169);
+            this.btnDeleteLoginInfo.Name = "btnDeleteLoginInfo";
+            this.btnDeleteLoginInfo.Size = new System.Drawing.Size(261, 23);
+            this.btnDeleteLoginInfo.TabIndex = 33;
+            this.btnDeleteLoginInfo.Text = "Delete Selected";
+            this.btnDeleteLoginInfo.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -551,6 +609,11 @@
         private System.Windows.Forms.Button btnAddCssCode;
         private System.Windows.Forms.Button btnEditCss;
         private System.Windows.Forms.CheckedListBox clbAssignments;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox cbLoginInfo;
+        private System.Windows.Forms.Button btnDeleteLoginInfo;
+        private System.Windows.Forms.Button btnEdiLoginInfo;
+        private System.Windows.Forms.Button btnAddLoginInfo;
     }
 }
 
