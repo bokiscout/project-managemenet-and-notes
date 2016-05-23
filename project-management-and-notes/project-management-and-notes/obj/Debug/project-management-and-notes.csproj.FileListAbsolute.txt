@@ -11,3 +11,13 @@ C:\Users\Borche Jankovski\Documents\GitHub\project-managemenet-and-notes\project
 C:\Users\Borche Jankovski\Documents\GitHub\project-managemenet-and-notes\project-management-and-notes\project-management-and-notes\obj\Debug\project_management_and_notes.CreateNewAssignmentForm.resources
 C:\Users\Borche Jankovski\Documents\GitHub\project-managemenet-and-notes\project-management-and-notes\project-management-and-notes\obj\Debug\project_management_and_notes.CreateNewLoginInfo.resources
 C:\Users\Borche Jankovski\Documents\GitHub\project-managemenet-and-notes\project-management-and-notes\project-management-and-notes\obj\Debug\project_management_and_notes.CreateNewCss.resources
+C:\Users\Borche Jankovski\Documents\GitHub\project-managemenet-and-notes\project-management-and-notes\project-management-and-notes\bin\Debug\EntityFramework.dll
+C:\Users\Borche Jankovski\Documents\GitHub\project-managemenet-and-notes\project-management-and-notes\project-management-and-notes\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Borche Jankovski\Documents\GitHub\project-managemenet-and-notes\project-management-and-notes\project-management-and-notes\bin\Debug\EntityFramework.xml
+C:\Users\Borche Jankovski\Documents\GitHub\project-managemenet-and-notes\project-management-and-notes\project-management-and-notes\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Borche Jankovski\Documents\GitHub\project-managemenet-and-notes\project-management-and-notes\project-management-and-notes\bin\Debug\ProjectsDb.mdf
+C:\Users\Borche Jankovski\Documents\GitHub\project-managemenet-and-notes\project-management-and-notes\project-management-and-notes\bin\Debug\ProjectsDb_log.ldf
+C:\Users\Borche Jankovski\Documents\GitHub\project-managemenet-and-notes\project-management-and-notes\project-management-and-notes\bin\Debug\project-management-and-notes.exe.manifest
+C:\Users\Borche Jankovski\Documents\GitHub\project-managemenet-and-notes\project-management-and-notes\project-management-and-notes\bin\Debug\project-management-and-notes.application
+C:\Users\Borche Jankovski\Documents\GitHub\project-managemenet-and-notes\project-management-and-notes\project-management-and-notes\obj\Debug\project-management-and-notes.exe.manifest
+C:\Users\Borche Jankovski\Documents\GitHub\project-managemenet-and-notes\project-management-and-notes\project-management-and-notes\obj\Debug\project-management-and-notes.application

@@ -38,6 +38,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.gbLoginInfo = new System.Windows.Forms.GroupBox();
+            this.btnDeleteLoginInfo = new System.Windows.Forms.Button();
+            this.btnEdiLoginInfo = new System.Windows.Forms.Button();
+            this.btnAddLoginInfo = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cbLoginInfo = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -70,11 +75,6 @@
             this.btnAddCssCode = new System.Windows.Forms.Button();
             this.lbCssCodes = new System.Windows.Forms.ListBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.cbLoginInfo = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.btnAddLoginInfo = new System.Windows.Forms.Button();
-            this.btnEdiLoginInfo = new System.Windows.Forms.Button();
-            this.btnDeleteLoginInfo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -215,6 +215,54 @@
             this.gbLoginInfo.TabIndex = 27;
             this.gbLoginInfo.TabStop = false;
             this.gbLoginInfo.Text = "LoginInfo";
+            // 
+            // btnDeleteLoginInfo
+            // 
+            this.btnDeleteLoginInfo.Location = new System.Drawing.Point(12, 169);
+            this.btnDeleteLoginInfo.Name = "btnDeleteLoginInfo";
+            this.btnDeleteLoginInfo.Size = new System.Drawing.Size(261, 23);
+            this.btnDeleteLoginInfo.TabIndex = 33;
+            this.btnDeleteLoginInfo.Text = "Delete Selected";
+            this.btnDeleteLoginInfo.UseVisualStyleBackColor = true;
+            this.btnDeleteLoginInfo.Click += new System.EventHandler(this.btnDeleteLoginInfo_Click);
+            // 
+            // btnEdiLoginInfo
+            // 
+            this.btnEdiLoginInfo.Location = new System.Drawing.Point(12, 198);
+            this.btnEdiLoginInfo.Name = "btnEdiLoginInfo";
+            this.btnEdiLoginInfo.Size = new System.Drawing.Size(261, 23);
+            this.btnEdiLoginInfo.TabIndex = 32;
+            this.btnEdiLoginInfo.Text = "Edit Selected";
+            this.btnEdiLoginInfo.UseVisualStyleBackColor = true;
+            this.btnEdiLoginInfo.Click += new System.EventHandler(this.btnEdiLoginInfo_Click);
+            // 
+            // btnAddLoginInfo
+            // 
+            this.btnAddLoginInfo.Location = new System.Drawing.Point(12, 140);
+            this.btnAddLoginInfo.Name = "btnAddLoginInfo";
+            this.btnAddLoginInfo.Size = new System.Drawing.Size(261, 23);
+            this.btnAddLoginInfo.TabIndex = 31;
+            this.btnAddLoginInfo.Text = "Add New login Information";
+            this.btnAddLoginInfo.UseVisualStyleBackColor = true;
+            this.btnAddLoginInfo.Click += new System.EventHandler(this.btnAddLoginInfo_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 22);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(72, 13);
+            this.label10.TabIndex = 30;
+            this.label10.Text = "Show info for:";
+            // 
+            // cbLoginInfo
+            // 
+            this.cbLoginInfo.FormattingEnabled = true;
+            this.cbLoginInfo.Location = new System.Drawing.Point(92, 19);
+            this.cbLoginInfo.Name = "cbLoginInfo";
+            this.cbLoginInfo.Size = new System.Drawing.Size(181, 21);
+            this.cbLoginInfo.TabIndex = 29;
+            this.cbLoginInfo.SelectedIndexChanged += new System.EventHandler(this.cbLoginInfo_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -456,6 +504,7 @@
             this.btnEditCss.TabIndex = 1;
             this.btnEditCss.Text = "Edit";
             this.btnEditCss.UseVisualStyleBackColor = true;
+            this.btnEditCss.Click += new System.EventHandler(this.btnEditCss_Click);
             // 
             // rtbCssCodeDetails
             // 
@@ -493,52 +542,6 @@
             this.lbCssCodes.Size = new System.Drawing.Size(180, 368);
             this.lbCssCodes.TabIndex = 0;
             this.lbCssCodes.SelectedIndexChanged += new System.EventHandler(this.lbCssCodes_SelectedIndexChanged);
-            // 
-            // cbLoginInfo
-            // 
-            this.cbLoginInfo.FormattingEnabled = true;
-            this.cbLoginInfo.Location = new System.Drawing.Point(92, 19);
-            this.cbLoginInfo.Name = "cbLoginInfo";
-            this.cbLoginInfo.Size = new System.Drawing.Size(181, 21);
-            this.cbLoginInfo.TabIndex = 29;
-            this.cbLoginInfo.SelectedIndexChanged += new System.EventHandler(this.cbLoginInfo_SelectedIndexChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 22);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(72, 13);
-            this.label10.TabIndex = 30;
-            this.label10.Text = "Show info for:";
-            // 
-            // btnAddLoginInfo
-            // 
-            this.btnAddLoginInfo.Location = new System.Drawing.Point(12, 140);
-            this.btnAddLoginInfo.Name = "btnAddLoginInfo";
-            this.btnAddLoginInfo.Size = new System.Drawing.Size(261, 23);
-            this.btnAddLoginInfo.TabIndex = 31;
-            this.btnAddLoginInfo.Text = "Add New login Information";
-            this.btnAddLoginInfo.UseVisualStyleBackColor = true;
-            this.btnAddLoginInfo.Click += new System.EventHandler(this.btnAddLoginInfo_Click);
-            // 
-            // btnEdiLoginInfo
-            // 
-            this.btnEdiLoginInfo.Location = new System.Drawing.Point(12, 198);
-            this.btnEdiLoginInfo.Name = "btnEdiLoginInfo";
-            this.btnEdiLoginInfo.Size = new System.Drawing.Size(261, 23);
-            this.btnEdiLoginInfo.TabIndex = 32;
-            this.btnEdiLoginInfo.Text = "Edit Selected";
-            this.btnEdiLoginInfo.UseVisualStyleBackColor = true;
-            // 
-            // btnDeleteLoginInfo
-            // 
-            this.btnDeleteLoginInfo.Location = new System.Drawing.Point(12, 169);
-            this.btnDeleteLoginInfo.Name = "btnDeleteLoginInfo";
-            this.btnDeleteLoginInfo.Size = new System.Drawing.Size(261, 23);
-            this.btnDeleteLoginInfo.TabIndex = 33;
-            this.btnDeleteLoginInfo.Text = "Delete Selected";
-            this.btnDeleteLoginInfo.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
