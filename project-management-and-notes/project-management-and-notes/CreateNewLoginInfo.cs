@@ -23,13 +23,9 @@ namespace project_management_and_notes
         {
             loginInfo = new LoginInfo();
             
-            //loginInfo.SetUrl(tbUrl.Text);
-            //loginInfo.SetUserName(tbUserName.Text);
-            //loginInfo.SetPassword(tbPassword.Text);
-
-            loginInfo.Username = tbUserName.Text;
-            loginInfo.Password = tbPassword.Text;
-            loginInfo.Url = tbUrl.Text;
+            loginInfo.SetUrl(tbUrl.Text);
+            loginInfo.SetUserName(tbUserName.Text);
+            loginInfo.SetPassword(tbPassword.Text);
 
             DialogResult = DialogResult.OK;
         }

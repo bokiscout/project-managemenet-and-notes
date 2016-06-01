@@ -26,11 +26,7 @@ namespace project_management_and_notes
         private void btnAdd_Click(object sender, EventArgs e)
         {
             assignment = new Assignment();
-            //assignment.SetTodo(tbAssignment.Text);
-
-            assignment.ToDo = tbAssignment.Text;
-            assignment.Done = false;
-
+            assignment.SetTodo(tbAssignment.Text);
             DialogResult = DialogResult.OK;
         }
     }

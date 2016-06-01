@@ -23,18 +23,13 @@ namespace project_management_and_notes
         {
             project = new Project();
 
-            String projectName = tbProjectName.Text;
             String clientName = tbClientName.Text;
+            String projectName = tbProjectName.Text;
             DateTime deadline = dtpDeadLine.Value.Date;
 
-            //project.SetClientName(clientName);
-            //project.SetName(projectName);
-            //project.SetDeadline(deadline);
-
-            project.Name = projectName;
-            project.Client = clientName;
-            project.StartDate = DateTime.Now;
-            project.DeadLine = deadline;
+            project.SetClientName(clientName);
+            project.SetName(projectName);
+            project.SetDeadline(deadline);
 
             DialogResult = DialogResult.OK;
         }

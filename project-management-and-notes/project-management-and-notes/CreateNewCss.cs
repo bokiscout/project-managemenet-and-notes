@@ -12,7 +12,7 @@ namespace project_management_and_notes
 {
     public partial class CreateNewCss : Form
     {
-        private CSSCode cssCode { get; set; }
+        private CssCode cssCode { get; set; }
 
         public CreateNewCss()
         {
@@ -21,12 +21,9 @@ namespace project_management_and_notes
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            cssCode = new CSSCode();
-            //cssCode.SetCode(rbCode.Text);
-            //cssCode.SetDescription(tbFunction.Text);
-
-            cssCode.Function = tbFunction.Text;
-            cssCode.Code = rbCode.Text;
+            cssCode = new CssCode();
+            cssCode.SetCode(rbCode.Text);
+            cssCode.SetDescription(tbFunction.Text);
 
             DialogResult = DialogResult.OK;
         }
@@ -37,7 +34,7 @@ namespace project_management_and_notes
             this.Close();
         }
 
-        public CSSCode GetCssCode()
+        public CssCode GetCssCode()
         {
             return this.cssCode;
         }
