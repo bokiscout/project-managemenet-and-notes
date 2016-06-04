@@ -67,7 +67,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnSearch = new System.Windows.Forms.Button();
             this.Search = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbSearch = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnEditCss = new System.Windows.Forms.Button();
             this.rtbCssCodeDetails = new System.Windows.Forms.RichTextBox();
@@ -75,6 +75,9 @@
             this.btnAddCssCode = new System.Windows.Forms.Button();
             this.lbCssCodes = new System.Windows.Forms.ListBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.btnDeleteAssignment = new System.Windows.Forms.Button();
+            this.btnDeleteProject = new System.Windows.Forms.Button();
+            this.btnEditProject = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -88,6 +91,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnEditProject);
+            this.groupBox1.Controls.Add(this.btnDeleteProject);
             this.groupBox1.Controls.Add(this.btnAddProject);
             this.groupBox1.Controls.Add(this.lbProjects);
             this.groupBox1.Location = new System.Drawing.Point(6, 51);
@@ -99,7 +104,7 @@
             // 
             // btnAddProject
             // 
-            this.btnAddProject.Location = new System.Drawing.Point(6, 409);
+            this.btnAddProject.Location = new System.Drawing.Point(9, 351);
             this.btnAddProject.Name = "btnAddProject";
             this.btnAddProject.Size = new System.Drawing.Size(213, 23);
             this.btnAddProject.TabIndex = 1;
@@ -111,7 +116,7 @@
             // 
             this.lbProjects.Location = new System.Drawing.Point(9, 19);
             this.lbProjects.Name = "lbProjects";
-            this.lbProjects.Size = new System.Drawing.Size(213, 381);
+            this.lbProjects.Size = new System.Drawing.Size(213, 316);
             this.lbProjects.TabIndex = 0;
             this.lbProjects.SelectedIndexChanged += new System.EventHandler(this.lbProjects_SelectedIndexChanged);
             // 
@@ -218,7 +223,7 @@
             // 
             // btnDeleteLoginInfo
             // 
-            this.btnDeleteLoginInfo.Location = new System.Drawing.Point(12, 169);
+            this.btnDeleteLoginInfo.Location = new System.Drawing.Point(12, 198);
             this.btnDeleteLoginInfo.Name = "btnDeleteLoginInfo";
             this.btnDeleteLoginInfo.Size = new System.Drawing.Size(261, 23);
             this.btnDeleteLoginInfo.TabIndex = 33;
@@ -228,7 +233,7 @@
             // 
             // btnEdiLoginInfo
             // 
-            this.btnEdiLoginInfo.Location = new System.Drawing.Point(12, 198);
+            this.btnEdiLoginInfo.Location = new System.Drawing.Point(12, 169);
             this.btnEdiLoginInfo.Name = "btnEdiLoginInfo";
             this.btnEdiLoginInfo.Size = new System.Drawing.Size(261, 23);
             this.btnEdiLoginInfo.TabIndex = 32;
@@ -314,6 +319,7 @@
             // 
             // gbAssignments
             // 
+            this.gbAssignments.Controls.Add(this.btnDeleteAssignment);
             this.gbAssignments.Controls.Add(this.clbAssignments);
             this.gbAssignments.Controls.Add(this.btnEditAssignment);
             this.gbAssignments.Controls.Add(this.btnAddAssignment);
@@ -329,13 +335,13 @@
             this.clbAssignments.FormattingEnabled = true;
             this.clbAssignments.Location = new System.Drawing.Point(10, 19);
             this.clbAssignments.Name = "clbAssignments";
-            this.clbAssignments.Size = new System.Drawing.Size(218, 334);
+            this.clbAssignments.Size = new System.Drawing.Size(218, 304);
             this.clbAssignments.TabIndex = 17;
             this.clbAssignments.SelectedValueChanged += new System.EventHandler(this.clbAssignments_SelectedValueChanged);
             // 
             // btnEditAssignment
             // 
-            this.btnEditAssignment.Location = new System.Drawing.Point(10, 361);
+            this.btnEditAssignment.Location = new System.Drawing.Point(6, 361);
             this.btnEditAssignment.Name = "btnEditAssignment";
             this.btnEditAssignment.Size = new System.Drawing.Size(218, 23);
             this.btnEditAssignment.TabIndex = 15;
@@ -345,7 +351,7 @@
             // 
             // btnAddAssignment
             // 
-            this.btnAddAssignment.Location = new System.Drawing.Point(10, 390);
+            this.btnAddAssignment.Location = new System.Drawing.Point(6, 332);
             this.btnAddAssignment.Name = "btnAddAssignment";
             this.btnAddAssignment.Size = new System.Drawing.Size(218, 23);
             this.btnAddAssignment.TabIndex = 16;
@@ -449,7 +455,7 @@
             // 
             this.tabPage2.Controls.Add(this.btnSearch);
             this.tabPage2.Controls.Add(this.Search);
-            this.tabPage2.Controls.Add(this.textBox1);
+            this.tabPage2.Controls.Add(this.tbSearch);
             this.tabPage2.Controls.Add(this.groupBox4);
             this.tabPage2.Controls.Add(this.groupBox3);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -468,6 +474,7 @@
             this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // Search
             // 
@@ -478,12 +485,12 @@
             this.Search.TabIndex = 3;
             this.Search.Text = "Search";
             // 
-            // textBox1
+            // tbSearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(655, 20);
-            this.textBox1.TabIndex = 2;
+            this.tbSearch.Location = new System.Drawing.Point(12, 29);
+            this.tbSearch.Name = "tbSearch";
+            this.tbSearch.Size = new System.Drawing.Size(655, 20);
+            this.tbSearch.TabIndex = 2;
             // 
             // groupBox4
             // 
@@ -543,6 +550,37 @@
             this.lbCssCodes.TabIndex = 0;
             this.lbCssCodes.SelectedIndexChanged += new System.EventHandler(this.lbCssCodes_SelectedIndexChanged);
             // 
+            // btnDeleteAssignment
+            // 
+            this.btnDeleteAssignment.Location = new System.Drawing.Point(6, 390);
+            this.btnDeleteAssignment.Name = "btnDeleteAssignment";
+            this.btnDeleteAssignment.Size = new System.Drawing.Size(218, 23);
+            this.btnDeleteAssignment.TabIndex = 18;
+            this.btnDeleteAssignment.Text = "Delete";
+            this.btnDeleteAssignment.UseVisualStyleBackColor = true;
+            this.btnDeleteAssignment.Click += new System.EventHandler(this.btnDeleteAssignment_Click);
+            // 
+            // btnDeleteProject
+            // 
+            this.btnDeleteProject.Enabled = false;
+            this.btnDeleteProject.Location = new System.Drawing.Point(9, 409);
+            this.btnDeleteProject.Name = "btnDeleteProject";
+            this.btnDeleteProject.Size = new System.Drawing.Size(213, 23);
+            this.btnDeleteProject.TabIndex = 2;
+            this.btnDeleteProject.Text = "Delete";
+            this.btnDeleteProject.UseVisualStyleBackColor = true;
+            this.btnDeleteProject.Click += new System.EventHandler(this.btnDeleteProject_Click);
+            // 
+            // btnEditProject
+            // 
+            this.btnEditProject.Location = new System.Drawing.Point(9, 380);
+            this.btnEditProject.Name = "btnEditProject";
+            this.btnEditProject.Size = new System.Drawing.Size(213, 23);
+            this.btnEditProject.TabIndex = 3;
+            this.btnEditProject.Text = "Edit Project";
+            this.btnEditProject.UseVisualStyleBackColor = true;
+            this.btnEditProject.Click += new System.EventHandler(this.btnEditProject_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -580,7 +618,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label Search;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RichTextBox rtbCssCodeDetails;
@@ -617,6 +655,9 @@
         private System.Windows.Forms.Button btnDeleteLoginInfo;
         private System.Windows.Forms.Button btnEdiLoginInfo;
         private System.Windows.Forms.Button btnAddLoginInfo;
+        private System.Windows.Forms.Button btnDeleteAssignment;
+        private System.Windows.Forms.Button btnDeleteProject;
+        private System.Windows.Forms.Button btnEditProject;
     }
 }
 

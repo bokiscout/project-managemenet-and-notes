@@ -19,6 +19,14 @@ namespace project_management_and_notes
             InitializeComponent();
         }
 
+        public CreateNewCss(string function, string code)
+        {
+            InitializeComponent();
+
+            tbFunction.Text = function;
+            rbCode.Text = code;
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             cssCode = new CSSCode();

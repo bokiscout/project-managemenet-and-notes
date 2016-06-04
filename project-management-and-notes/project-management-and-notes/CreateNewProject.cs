@@ -16,7 +16,15 @@ namespace project_management_and_notes
         public CreateNewProject()
         {
             InitializeComponent();
-            
+        }
+
+        public CreateNewProject(string name, string client, DateTime deadLine)
+        {
+            InitializeComponent();
+
+            tbProjectName.Text = name;
+            tbClientName.Text = client;
+            dtpDeadLine.Value = deadLine;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

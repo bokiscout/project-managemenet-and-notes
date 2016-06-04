@@ -19,6 +19,15 @@ namespace project_management_and_notes
             InitializeComponent();
         }
 
+        public CreateNewLoginInfo(string url, string username, string password)
+        {
+            InitializeComponent();
+
+            tbUrl.Text = url;
+            tbUserName.Text = username;
+            tbPassword.Text = password;
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             loginInfo = new LoginInfo();

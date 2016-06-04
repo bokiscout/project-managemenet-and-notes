@@ -18,6 +18,12 @@ namespace project_management_and_notes
             InitializeComponent();
         }
 
+        public CreateNewAssignmentForm(string toDo)
+        {
+            InitializeComponent();
+            tbAssignment.Text = toDo;
+        }
+
         public Assignment GetAssignment()
         {
             return this.assignment;
@@ -32,6 +38,12 @@ namespace project_management_and_notes
             assignment.Done = false;
 
             DialogResult = DialogResult.OK;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

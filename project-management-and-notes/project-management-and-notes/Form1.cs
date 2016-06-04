@@ -19,30 +19,6 @@ namespace project_management_and_notes
         {
             
             InitializeComponent();
-//            DateTime deadline = DateTime.Now;
-//            Project p1 = new Project("First Project", "Project for Mr. I", deadline);
-//            p1.SetClientName("For you");
-//            p1.SetName("Project one new name");
-            
-//            Assignment a = new Assignment();
-//            a.SetIsDone(true);
-//            a.SetTodo("Do nothing, empty assignment");
-//            p1.AddAssignment(a);
-
-//            CssCode c = new CssCode();
-//            c.SetCode(@"<p>
-//</p>");
-//            c.SetDescription("paragraph");
-
-//            p1.AddCssCode(c);
-
-//            //Project p2 = new Project("Second Project", "Project for Mr. I", deadline);
-//            //Project p3 = new Project("Third Project", "Project for Mr. I", deadline);
-
-//            //lbProjects.Items.Add(p1);
-//            //lbProjects.Items.Add(p2);
-//            //lbProjects.Items.Add(p3);
-
             refreshFromDatabase();
         }
 
@@ -50,16 +26,24 @@ namespace project_management_and_notes
         {
             lbProjects.Items.Clear();
 
-            using (ProjectsDbEntities entitties = new ProjectsDbEntities())
+            try
             {
-                List<Project> projects = new List<Project>();
-                projects = entitties.Projects.ToList();
-
-                foreach (Project p in projects)
+                using (ProjectsDbEntities entitties = new ProjectsDbEntities())
                 {
-                    lbProjects.Items.Add(p);
+                    List<Project> projects = new List<Project>();
+                    projects = entitties.Projects.ToList();
+
+                    foreach (Project p in projects)
+                    {
+                        lbProjects.Items.Add(p);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("refreshFromDatabase\n\n" + ex.ToString());
+            }
+            
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -69,13 +53,9 @@ namespace project_management_and_notes
 
         private void lbProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Project project = lbProjects.SelectedItem as Project;
-            //this.RefreshProjectDetail(project);
-
             this.RefreshProjectDetail();
             this.refreshLoginInfo();
             this.refreshAssignments();
-
             this.refreshCssCodes();
         }
 
@@ -91,22 +71,29 @@ namespace project_management_and_notes
             }
             int projectId = p.Id;
 
-            using (ProjectsDbEntities entities = new ProjectsDbEntities())
+            try
             {
-                List<CSSCode> cssCodes = entities.CSSCodes.ToList();
-
-                foreach (CSSCode c in cssCodes)
+                using (ProjectsDbEntities entities = new ProjectsDbEntities())
                 {
-                    if (c.ProjectId == projectId)
+                    List<CSSCode> cssCodes = entities.CSSCodes.ToList();
+
+                    foreach (CSSCode c in cssCodes)
                     {
-                        lbCssCodes.Items.Add(c);
+                        if (c.ProjectId == projectId)
+                        {
+                            lbCssCodes.Items.Add(c);
+                        }
+                    }
+
+                    if (lbCssCodes.Items.Count > 0)
+                    {
+                        lbCssCodes.SelectedIndex = 0;
                     }
                 }
-
-                if (lbCssCodes.Items.Count > 0)
-                {
-                    lbCssCodes.SelectedIndex = 0;
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("refreshCssCodes\n\n" + ex.ToString());
             }
         }
 
@@ -122,24 +109,32 @@ namespace project_management_and_notes
             }
             int projectId = p.Id;
 
-            using (ProjectsDbEntities entities = new ProjectsDbEntities())
+            try
             {
-                List<Assignment> assignments = entities.Assignments.ToList();
-
-                foreach (Assignment a in assignments)
+                using (ProjectsDbEntities entities = new ProjectsDbEntities())
                 {
-                    if (a.ProjectId == projectId)
+                    List<Assignment> assignments = entities.Assignments.ToList();
+
+                    foreach (Assignment a in assignments)
                     {
-                        bool isDone = (bool) a.Done;
-                        clbAssignments.Items.Add(a, isDone);
+                        if (a.ProjectId == projectId)
+                        {
+                            bool isDone = (bool)a.Done;
+                            clbAssignments.Items.Add(a, isDone);
+                        }
+                    }
+
+                    if (clbAssignments.Items.Count > 0)
+                    {
+                        clbAssignments.SelectedIndex = 0;
                     }
                 }
-
-                if (clbAssignments.Items.Count > 0)
-                {
-                    clbAssignments.SelectedIndex = 0;
-                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("refreshAssignments\n\n" + ex.ToString());
+            }
+            
         }
 
         private void refreshLoginInfo()
@@ -156,64 +151,41 @@ namespace project_management_and_notes
             {
                 return;
             }
-
             int projectId = p.Id;
 
-            using (ProjectsDbEntities entities = new ProjectsDbEntities())
+            try
             {
-                List<LoginInfo> logins = entities.LoginInfoes.ToList();
-
-                foreach (LoginInfo l in logins)
+                using (ProjectsDbEntities entities = new ProjectsDbEntities())
                 {
-                    if (l.ProjectId == projectId)
+                    List<LoginInfo> logins = entities.LoginInfoes.ToList();
+
+                    foreach (LoginInfo l in logins)
                     {
-                        cbLoginInfo.Items.Add(l);
+                        if (l.ProjectId == projectId)
+                        {
+                            cbLoginInfo.Items.Add(l);
+                        }
+                    }
+
+                    if (cbLoginInfo.Items.Count > 0)
+                    {
+                        cbLoginInfo.SelectedIndex = 0;
                     }
                 }
-
-                if (cbLoginInfo.Items.Count > 0)
-                {
-                    cbLoginInfo.SelectedIndex = 0;
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("refreshLoginInfo\n\n" + ex.ToString());
             }
         }
 
         private void RefreshProjectDetail()
         {
-            //tbProjectName.Text = p.GetName();
-            //tbClientName.Text = p.GetClientName();
-            //tbStartDate.Text = p.GetDateCreatedAsString();
-            //tbDeadLine.Text = p.GetDateDeadlineAsString();
-
-            
-            //tbLoginInfoPassword.Clear();
-            //tbLoginInfoUrl.Clear();
-            //tbLoginInfoUsername.Clear();
-            //cbLoginInfo.SelectedIndex = -1;
-            //cbLoginInfo.Items.Clear();
-            //List<LoginInfo> loginIformations = p.GetLoginInfo();
-            //foreach (LoginInfo l in loginIformations)
-            //{
-            //    cbLoginInfo.Items.Add(l);
-            //}
-            
-            ////lbAssignments.Items.Clear();
-            //clbAssignments.Items.Clear();
-
-            //List<Assignment> assignments = p.GetAssignments();
-            //foreach (Assignment a in assignments)
-            //{
-            //    //lbAssignments.Items.Add(a);
-            //    clbAssignments.Items.Add(a, a.GetIsDone());
-            //}
-
-            //lbCssCodes.Items.Clear();
-            //List<CssCode> cssCodes = p.GetCssCodes();
-            //foreach (CssCode c in cssCodes)
-            //{
-            //    lbCssCodes.Items.Add(c);
-            //}
-
+            // ********************************************************
+            // to do
+            //
+            // read from database instead of object in the list box!
+            //********************************************************
             Project p = lbProjects.SelectedItem as Project;
 
             if (p != null)
@@ -236,9 +208,6 @@ namespace project_management_and_notes
 
         private void lbCssCodes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //CssCode c = lbCssCodes.SelectedItem as CssCode;
-            //rtbCssCodeDetails.Text = c.GetCode();
-
             CSSCode c = lbCssCodes.SelectedItem as CSSCode;
             if (c != null)
             {
@@ -256,29 +225,26 @@ namespace project_management_and_notes
             if (createProjectForm.ShowDialog() == DialogResult.OK)
             {
                 Project p = createProjectForm.GetProjet();
-
-                using (ProjectsDbEntities entitties = new ProjectsDbEntities())
+                try
                 {
-                    entitties.Projects.Add(p);
-                    entitties.SaveChanges();
-                }
+                    using (ProjectsDbEntities entitties = new ProjectsDbEntities())
+                    {
+                        entitties.Projects.Add(p);
+                        entitties.SaveChanges();
+                    }
 
-                this.refreshFromDatabase();
+                    this.refreshFromDatabase();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("btnAddProject_click\n\n" + ex.ToString());
+                }
+                
             }
         }
 
         private void btnAddAssignment_Click(object sender, EventArgs e)
         {
-            //CreateNewAssignmentForm createNewAssignment = new CreateNewAssignmentForm();
-            //if (createNewAssignment.ShowDialog() == DialogResult.OK)
-            //{
-            //    Assignment a = createNewAssignment.GetAssignment();
-            //    clbAssignments.Items.Add(a);
-
-            //    Project p = lbProjects.SelectedItem as Project;
-            //    p.AddAssignment(a);
-            //}
-
             CreateNewAssignmentForm createNewAssignment = new CreateNewAssignmentForm();
 
             if (createNewAssignment.ShowDialog() == DialogResult.OK)
@@ -288,14 +254,21 @@ namespace project_management_and_notes
 
                 Assignment a = createNewAssignment.GetAssignment();
                 a.ProjectId = projectId;
-
-                using (ProjectsDbEntities entitties = new ProjectsDbEntities())
+                
+                try
                 {
-                    entitties.Assignments.Add(a);
-                    entitties.SaveChanges();
-                }
+                    using (ProjectsDbEntities entitties = new ProjectsDbEntities())
+                    {
+                        entitties.Assignments.Add(a);
+                        entitties.SaveChanges();
+                    }
 
-                this.refreshAssignments();
+                    this.refreshAssignments();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("btnAddAssignment_click\n\n" + ex.ToString());
+                }
             }
         }
 
@@ -307,56 +280,66 @@ namespace project_management_and_notes
 
         private void btnEditAssignment_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not implemented");
+            Assignment current = clbAssignments.SelectedItem as Assignment;
+
+            CreateNewAssignmentForm assignmentForm = new CreateNewAssignmentForm(current.ToDo);
+            if (assignmentForm.ShowDialog() == DialogResult.OK)
+            {
+                Assignment modifiedAssignment = assignmentForm.GetAssignment();
+                try
+                {
+                    using (ProjectsDbEntities entitties = new ProjectsDbEntities())
+                    {
+                        List<Assignment> assignments = entitties.Assignments.ToList();
+                        foreach (Assignment a in assignments)
+                        {
+                            if (a.Id == current.Id)
+                            {
+                                a.ToDo = modifiedAssignment.ToDo;
+                                entitties.SaveChanges();
+                                refreshAssignments();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("clbAssignments_SelectedValueChanged\n\n" + ex.ToString());
+                }
+            } 
         }
 
         private void btnAddLoginInfo_Click(object sender, EventArgs e)
         {
-            //CreateNewLoginInfo createNewLoginInfo = new CreateNewLoginInfo();
-            //if (createNewLoginInfo.ShowDialog() == DialogResult.OK)
-            //{
-            //    LoginInfo loginInfo = createNewLoginInfo.GetLoginInfo();
-            //    cbLoginInfo.Items.Add(loginInfo);
-
-            //    Project p = lbProjects.SelectedItem as Project;
-            //    p.AddLoginInfo(loginInfo);
-            //}
-
             Project p = lbProjects.SelectedItem as Project;
             int projectId = p.Id;
 
             CreateNewLoginInfo createNewLoginInfo = new CreateNewLoginInfo();
             if (createNewLoginInfo.ShowDialog() == DialogResult.OK)
             {
-                //LoginInfo loginInfo = createNewLoginInfo.GetLoginInfo();
-                //cbLoginInfo.Items.Add(loginInfo);
-
-                //Project p = lbProjects.SelectedItem as Project;
-                //p.AddLoginInfo(loginInfo);
-
                 LoginInfo l = createNewLoginInfo.GetLoginInfo();
                 l.ProjectId = projectId;
 
-                using (ProjectsDbEntities entitties = new ProjectsDbEntities())
+                try
                 {
-                    entitties.LoginInfoes.Add(l);
-                    entitties.SaveChanges();
-                }
+                    using (ProjectsDbEntities entitties = new ProjectsDbEntities())
+                    {
+                        entitties.LoginInfoes.Add(l);
+                        entitties.SaveChanges();
+                    }
 
-                this.refreshLoginInfo();
+                    this.refreshLoginInfo();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("btnAddloginInfo_click\n\n" + ex.ToString());
+                }
+                
             }
         }
 
         private void cbLoginInfo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //LoginInfo l = cbLoginInfo.SelectedItem as LoginInfo;
-            //if (l != null)
-            //{
-            //    tbLoginInfoPassword.Text = l.GetPassword();
-            //    tbLoginInfoUrl.Text = l.GetUrl();
-            //    tbLoginInfoUsername.Text = l.GetUsername();
-            //}
-
             LoginInfo l = cbLoginInfo.SelectedItem as LoginInfo;
             if (l != null)
             {
@@ -368,18 +351,6 @@ namespace project_management_and_notes
 
         private void btnAddCssCode_Click(object sender, EventArgs e)
         {
-            //CreateNewCss newCssCodeForm = new CreateNewCss();
-            //if (newCssCodeForm.ShowDialog() == DialogResult.OK)
-            //{
-            //    CssCode code = newCssCodeForm.GetCssCode();
-            //    rtbCssCodeDetails.Text = code.GetCode();
-
-            //    lbCssCodes.Items.Add(code);
-
-            //    Project p = lbProjects.SelectedItem as Project;
-            //    p.AddCssCode(code);
-            //}
-
             Project p = lbProjects.SelectedItem as Project;
             if (p == null)
             {
@@ -408,19 +379,256 @@ namespace project_management_and_notes
 
         private void btnDeleteLoginInfo_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not implemented");
+            LoginInfo current = cbLoginInfo.SelectedItem as LoginInfo;
+
+            if (current == null)
+            {
+                MessageBox.Show("Can't delete null object");
+                return;
+            }
+            else
+            {
+                using (ProjectsDbEntities context = new ProjectsDbEntities())
+                {
+                    try
+                    {
+                        var login = (from o in context.LoginInfoes where o.Id == current.Id select o).First();
+                        context.LoginInfoes.Remove(login);
+                        context.SaveChanges();
+                        this.refreshLoginInfo();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+            }
         }
 
         private void btnEdiLoginInfo_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not implemented");
+            // MessageBox.Show("Not implemented");
+            LoginInfo current = cbLoginInfo.SelectedItem as LoginInfo;
+
+            CreateNewLoginInfo loginForm = new CreateNewLoginInfo(current.Url, current.Username, current.Password);
+            if (loginForm.ShowDialog() == DialogResult.OK)
+            {
+                LoginInfo modifiedInfo = loginForm.GetLoginInfo();
+                using (ProjectsDbEntities context = new ProjectsDbEntities())
+                {
+                    try
+                    {
+                        var login = (from o in context.LoginInfoes where o.Id == current.Id select o).First();
+                        login.Username = modifiedInfo.Username;
+                        login.Url = modifiedInfo.Url;
+                        login.Password = modifiedInfo.Password;
+                        context.SaveChanges();
+                        this.refreshLoginInfo();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("btnEdiLoginInfo_Click" + "\n\n" + ex.ToString());
+                    }
+                }   
+            }
         }
 
         private void btnEditCss_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not implemented");
+            // MessageBox.Show("Not implemented");
+            CSSCode courrent = lbCssCodes.SelectedItem as CSSCode;
+
+            CreateNewCss formCss = new CreateNewCss(courrent.Function, courrent.Code);
+            if (formCss.ShowDialog() == DialogResult.OK)
+            {
+                CSSCode modified = formCss.GetCssCode();
+                try
+                {
+                    using (ProjectsDbEntities context = new ProjectsDbEntities())
+                    {
+                        List<CSSCode> cssCodes = context.CSSCodes.ToList();
+                        foreach (CSSCode c in cssCodes)
+                        {
+                            if (c.Id == courrent.Id)
+                            {
+                                c.Function = modified.Function;
+                                c.Code = modified.Code;
+
+                                context.SaveChanges();
+                                this.refreshCssCodes();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("btnEditCss_click\n\n" + ex.ToString());
+                }
+            }
         }
 
+        private void btnDeleteAssignment_Click(object sender, EventArgs e)
+        {
+            Assignment current = clbAssignments.SelectedItem as Assignment;
+            
+            if(current == null){
+                MessageBox.Show("Can't delete null object!");
+                return;
+            }
 
+            try
+            {
+                using (ProjectsDbEntities context = new ProjectsDbEntities())
+                {
+                    List<Assignment> assignments = context.Assignments.ToList();
+                    foreach (Assignment a in assignments)
+                    {
+                        if (a.Id == current.Id)
+                        {
+                            context.Assignments.Remove(a);
+                            context.SaveChanges();
+                            refreshAssignments();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("btnDeleteAssignment\n\n" + ex.ToString());
+            }
+
+
+
+        }
+
+        private void btnDeleteProject_Click(object sender, EventArgs e)
+        {
+            Project courrent = lbProjects.SelectedItem as Project;
+            int courentProjectId = courrent.Id;
+
+            try
+            {
+                using (ProjectsDbEntities context = new ProjectsDbEntities())
+                {   
+                    // first delete Assignments and LoginInfoes associated with project that will be deleted
+                    // then delete the project itself
+                    //
+                    // CssCodes should remain
+                    //
+                    // Note:
+                    // This method is not working properly!!!
+                    // cssCode can not be associated with non existing (deleted) project
+                    //
+                    // Solution:
+                    // Change the DataBase or don't delete the projects
+
+                    List<Assignment> assignments = context.Assignments.ToList();
+                    foreach (Assignment a in assignments)
+                    {
+                        if (a.ProjectId == courentProjectId)
+                        {
+                            context.Assignments.Remove(a);
+                            context.SaveChanges();
+                            refreshAssignments();
+                        }
+                    }
+
+                    List<LoginInfo> loginInfoes = context.LoginInfoes.ToList();
+                    foreach (LoginInfo l in loginInfoes)
+                    {
+                        if (l.ProjectId == courentProjectId)
+                        {
+                            context.LoginInfoes.Remove(l);
+                            context.SaveChanges();
+                            refreshLoginInfo();
+                        }
+                    }
+
+                    List<Project> projects = context.Projects.ToList();
+                    foreach (Project p in projects)
+                    {
+                        if (p.Id == courentProjectId)
+                        {
+                            context.Projects.Remove(p);
+                            context.SaveChanges();
+                            refreshFromDatabase();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("btnDeleteProject_click\n\n" + ex.ToString());
+            }
+        }
+
+        private void btnEditProject_Click(object sender, EventArgs e)
+        {
+            Project courrent = lbProjects.SelectedItem as Project;
+
+            CreateNewProject formProject = new CreateNewProject(courrent.Name, courrent.Client, courrent.DeadLine.Value);
+            if (formProject.ShowDialog() == DialogResult.OK)
+            {
+                Project modified = formProject.GetProjet();
+
+                try
+                {
+                    using (ProjectsDbEntities context = new ProjectsDbEntities())
+                    {
+                        List<Project> projects = context.Projects.ToList();
+                        foreach (Project p in projects)
+                        {
+                            if (p.Id == courrent.Id)
+                            {
+                                p.Name = modified.Name;
+                                p.Client = modified.Client;
+                                p.StartDate = modified.StartDate;
+                                p.DeadLine = modified.DeadLine;
+                                p.FinishDate = modified.FinishDate;
+
+                                context.SaveChanges();
+                                refreshFromDatabase();
+                                RefreshProjectDetail();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("btnEditProject_click\n\n" + ex.ToString());
+                }
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            String query = tbSearch.Text;
+            
+            if(query.Trim().Length == 0){
+                MessageBox.Show("Can't search for empty string!");
+                return;
+            }
+
+            lbCssCodes.Items.Clear();
+            try
+            {
+                using (ProjectsDbEntities context = new ProjectsDbEntities())
+                {
+                    List<CSSCode> cssCodes = context.CSSCodes.ToList();
+                    foreach (CSSCode c in cssCodes)
+                    {
+                        if (c.Function.Contains(query))
+                        {
+                            lbCssCodes.Items.Add(c);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("btnSearch_click\n\n" + ex.ToString());
+                //
+            }   
+        }
     }
 }
