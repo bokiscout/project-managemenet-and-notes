@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ProjectsDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ProjectsDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Assignment">
           <Key>
             <PropertyRef Name="Id" />
@@ -43,6 +43,7 @@
           <Property Name="StartDate" Type="datetime" />
           <Property Name="FinishDate" Type="datetime" />
           <Property Name="DeadLine" Type="datetime" />
+          <Property Name="Status" Type="bit" />
         </EntityType>
         <Association Name="FK_Assignment_ToTable">
           <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
@@ -98,8 +99,7 @@
             <End Role="LoginInfo" EntitySet="LoginInfo" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProjectsDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -147,6 +147,7 @@
           <NavigationProperty Name="Assignments" Relationship="Self.FK_Assignment_ToTable" FromRole="Project" ToRole="Assignment" />
           <NavigationProperty Name="CSSCodes" Relationship="Self.FK_CSSCode_ToTable" FromRole="Project" ToRole="CSSCode" />
           <NavigationProperty Name="LoginInfoes" Relationship="Self.FK_LoginInfo_ToTable" FromRole="Project" ToRole="LoginInfo" />
+          <Property Name="Status" Type="Boolean" />
         </EntityType>
         <Association Name="FK_Assignment_ToTable">
           <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
@@ -242,6 +243,7 @@
           <EntitySetMapping Name="Projects">
             <EntityTypeMapping TypeName="ProjectsDbModel.Project">
               <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Client" ColumnName="Client" />

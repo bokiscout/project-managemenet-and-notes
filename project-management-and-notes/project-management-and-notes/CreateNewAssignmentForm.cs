@@ -34,7 +34,7 @@ namespace project_management_and_notes
             assignment = new Assignment();
             //assignment.SetTodo(tbAssignment.Text);
 
-            assignment.ToDo = tbAssignment.Text;
+            assignment.ToDo = tbAssignment.Text.Trim();
             assignment.Done = false;
 
             DialogResult = DialogResult.OK;

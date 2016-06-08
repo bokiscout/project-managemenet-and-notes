@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnEditProject = new System.Windows.Forms.Button();
+            this.btnDeleteProject = new System.Windows.Forms.Button();
             this.btnAddProject = new System.Windows.Forms.Button();
             this.lbProjects = new System.Windows.Forms.ListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbSort = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.gbLoginInfo = new System.Windows.Forms.GroupBox();
@@ -50,6 +53,7 @@
             this.tbLoginInfoPassword = new System.Windows.Forms.TextBox();
             this.tbLoginInfoUrl = new System.Windows.Forms.TextBox();
             this.gbAssignments = new System.Windows.Forms.GroupBox();
+            this.btnDeleteAssignment = new System.Windows.Forms.Button();
             this.clbAssignments = new System.Windows.Forms.CheckedListBox();
             this.btnEditAssignment = new System.Windows.Forms.Button();
             this.btnAddAssignment = new System.Windows.Forms.Button();
@@ -75,9 +79,6 @@
             this.btnAddCssCode = new System.Windows.Forms.Button();
             this.lbCssCodes = new System.Windows.Forms.ListBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.btnDeleteAssignment = new System.Windows.Forms.Button();
-            this.btnDeleteProject = new System.Windows.Forms.Button();
-            this.btnEditProject = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -102,11 +103,33 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Projects";
             // 
+            // btnEditProject
+            // 
+            this.btnEditProject.Enabled = false;
+            this.btnEditProject.Location = new System.Drawing.Point(9, 380);
+            this.btnEditProject.Name = "btnEditProject";
+            this.btnEditProject.Size = new System.Drawing.Size(210, 23);
+            this.btnEditProject.TabIndex = 3;
+            this.btnEditProject.Text = "Edit Project";
+            this.btnEditProject.UseVisualStyleBackColor = true;
+            this.btnEditProject.Click += new System.EventHandler(this.btnEditProject_Click);
+            // 
+            // btnDeleteProject
+            // 
+            this.btnDeleteProject.Enabled = false;
+            this.btnDeleteProject.Location = new System.Drawing.Point(9, 409);
+            this.btnDeleteProject.Name = "btnDeleteProject";
+            this.btnDeleteProject.Size = new System.Drawing.Size(210, 23);
+            this.btnDeleteProject.TabIndex = 2;
+            this.btnDeleteProject.Text = "Delete";
+            this.btnDeleteProject.UseVisualStyleBackColor = true;
+            this.btnDeleteProject.Click += new System.EventHandler(this.btnDeleteProject_Click);
+            // 
             // btnAddProject
             // 
             this.btnAddProject.Location = new System.Drawing.Point(9, 351);
             this.btnAddProject.Name = "btnAddProject";
-            this.btnAddProject.Size = new System.Drawing.Size(213, 23);
+            this.btnAddProject.Size = new System.Drawing.Size(210, 23);
             this.btnAddProject.TabIndex = 1;
             this.btnAddProject.Text = "Create Project";
             this.btnAddProject.UseVisualStyleBackColor = true;
@@ -116,7 +139,7 @@
             // 
             this.lbProjects.Location = new System.Drawing.Point(9, 19);
             this.lbProjects.Name = "lbProjects";
-            this.lbProjects.Size = new System.Drawing.Size(213, 316);
+            this.lbProjects.Size = new System.Drawing.Size(210, 316);
             this.lbProjects.TabIndex = 0;
             this.lbProjects.SelectedIndexChanged += new System.EventHandler(this.lbProjects_SelectedIndexChanged);
             // 
@@ -133,7 +156,7 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.comboBox2);
-            this.tabPage1.Controls.Add(this.comboBox1);
+            this.tabPage1.Controls.Add(this.cbSort);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
@@ -158,17 +181,17 @@
             this.comboBox2.Size = new System.Drawing.Size(148, 21);
             this.comboBox2.TabIndex = 4;
             // 
-            // comboBox1
+            // cbSort
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Date",
-            "Name",
+            this.cbSort.FormattingEnabled = true;
+            this.cbSort.Items.AddRange(new object[] {
+            "Deadline",
             "Status"});
-            this.comboBox1.Location = new System.Drawing.Point(15, 21);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(219, 21);
-            this.comboBox1.TabIndex = 3;
+            this.cbSort.Location = new System.Drawing.Point(15, 21);
+            this.cbSort.Name = "cbSort";
+            this.cbSort.Size = new System.Drawing.Size(219, 21);
+            this.cbSort.TabIndex = 3;
+            this.cbSort.SelectedIndexChanged += new System.EventHandler(this.cbSort_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -223,6 +246,7 @@
             // 
             // btnDeleteLoginInfo
             // 
+            this.btnDeleteLoginInfo.Enabled = false;
             this.btnDeleteLoginInfo.Location = new System.Drawing.Point(12, 198);
             this.btnDeleteLoginInfo.Name = "btnDeleteLoginInfo";
             this.btnDeleteLoginInfo.Size = new System.Drawing.Size(261, 23);
@@ -233,6 +257,7 @@
             // 
             // btnEdiLoginInfo
             // 
+            this.btnEdiLoginInfo.Enabled = false;
             this.btnEdiLoginInfo.Location = new System.Drawing.Point(12, 169);
             this.btnEdiLoginInfo.Name = "btnEdiLoginInfo";
             this.btnEdiLoginInfo.Size = new System.Drawing.Size(261, 23);
@@ -243,6 +268,7 @@
             // 
             // btnAddLoginInfo
             // 
+            this.btnAddLoginInfo.Enabled = false;
             this.btnAddLoginInfo.Location = new System.Drawing.Point(12, 140);
             this.btnAddLoginInfo.Name = "btnAddLoginInfo";
             this.btnAddLoginInfo.Size = new System.Drawing.Size(261, 23);
@@ -323,27 +349,40 @@
             this.gbAssignments.Controls.Add(this.clbAssignments);
             this.gbAssignments.Controls.Add(this.btnEditAssignment);
             this.gbAssignments.Controls.Add(this.btnAddAssignment);
-            this.gbAssignments.Location = new System.Drawing.Point(298, 13);
+            this.gbAssignments.Location = new System.Drawing.Point(304, 13);
             this.gbAssignments.Name = "gbAssignments";
-            this.gbAssignments.Size = new System.Drawing.Size(234, 419);
+            this.gbAssignments.Size = new System.Drawing.Size(228, 419);
             this.gbAssignments.TabIndex = 26;
             this.gbAssignments.TabStop = false;
             this.gbAssignments.Text = "Assignments";
+            // 
+            // btnDeleteAssignment
+            // 
+            this.btnDeleteAssignment.Enabled = false;
+            this.btnDeleteAssignment.Location = new System.Drawing.Point(6, 390);
+            this.btnDeleteAssignment.Name = "btnDeleteAssignment";
+            this.btnDeleteAssignment.Size = new System.Drawing.Size(210, 23);
+            this.btnDeleteAssignment.TabIndex = 18;
+            this.btnDeleteAssignment.Text = "Delete";
+            this.btnDeleteAssignment.UseVisualStyleBackColor = true;
+            this.btnDeleteAssignment.Click += new System.EventHandler(this.btnDeleteAssignment_Click);
             // 
             // clbAssignments
             // 
             this.clbAssignments.FormattingEnabled = true;
             this.clbAssignments.Location = new System.Drawing.Point(10, 19);
             this.clbAssignments.Name = "clbAssignments";
-            this.clbAssignments.Size = new System.Drawing.Size(218, 304);
+            this.clbAssignments.Size = new System.Drawing.Size(210, 304);
             this.clbAssignments.TabIndex = 17;
+            this.clbAssignments.SelectedIndexChanged += new System.EventHandler(this.clbAssignments_SelectedIndexChanged);
             this.clbAssignments.SelectedValueChanged += new System.EventHandler(this.clbAssignments_SelectedValueChanged);
             // 
             // btnEditAssignment
             // 
+            this.btnEditAssignment.Enabled = false;
             this.btnEditAssignment.Location = new System.Drawing.Point(6, 361);
             this.btnEditAssignment.Name = "btnEditAssignment";
-            this.btnEditAssignment.Size = new System.Drawing.Size(218, 23);
+            this.btnEditAssignment.Size = new System.Drawing.Size(210, 23);
             this.btnEditAssignment.TabIndex = 15;
             this.btnEditAssignment.Text = "Edit";
             this.btnEditAssignment.UseVisualStyleBackColor = true;
@@ -351,9 +390,10 @@
             // 
             // btnAddAssignment
             // 
+            this.btnAddAssignment.Enabled = false;
             this.btnAddAssignment.Location = new System.Drawing.Point(6, 332);
             this.btnAddAssignment.Name = "btnAddAssignment";
-            this.btnAddAssignment.Size = new System.Drawing.Size(218, 23);
+            this.btnAddAssignment.Size = new System.Drawing.Size(210, 23);
             this.btnAddAssignment.TabIndex = 16;
             this.btnAddAssignment.Text = "Add";
             this.btnAddAssignment.UseVisualStyleBackColor = true;
@@ -471,7 +511,7 @@
             this.btnSearch.Location = new System.Drawing.Point(673, 27);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(105, 23);
-            this.btnSearch.TabIndex = 4;
+            this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -490,25 +530,26 @@
             this.tbSearch.Location = new System.Drawing.Point(12, 29);
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(655, 20);
-            this.tbSearch.TabIndex = 2;
+            this.tbSearch.TabIndex = 0;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.btnEditCss);
             this.groupBox4.Controls.Add(this.rtbCssCodeDetails);
-            this.groupBox4.Location = new System.Drawing.Point(204, 62);
+            this.groupBox4.Location = new System.Drawing.Point(235, 62);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(574, 427);
-            this.groupBox4.TabIndex = 1;
+            this.groupBox4.Size = new System.Drawing.Size(543, 427);
+            this.groupBox4.TabIndex = 17;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Note details";
             // 
             // btnEditCss
             // 
+            this.btnEditCss.Enabled = false;
             this.btnEditCss.Location = new System.Drawing.Point(6, 398);
             this.btnEditCss.Name = "btnEditCss";
-            this.btnEditCss.Size = new System.Drawing.Size(562, 23);
-            this.btnEditCss.TabIndex = 1;
+            this.btnEditCss.Size = new System.Drawing.Size(531, 23);
+            this.btnEditCss.TabIndex = 5;
             this.btnEditCss.Text = "Edit";
             this.btnEditCss.UseVisualStyleBackColor = true;
             this.btnEditCss.Click += new System.EventHandler(this.btnEditCss_Click);
@@ -517,8 +558,8 @@
             // 
             this.rtbCssCodeDetails.Location = new System.Drawing.Point(6, 19);
             this.rtbCssCodeDetails.Name = "rtbCssCodeDetails";
-            this.rtbCssCodeDetails.Size = new System.Drawing.Size(562, 368);
-            this.rtbCssCodeDetails.TabIndex = 0;
+            this.rtbCssCodeDetails.Size = new System.Drawing.Size(531, 368);
+            this.rtbCssCodeDetails.TabIndex = 3;
             this.rtbCssCodeDetails.Text = "";
             // 
             // groupBox3
@@ -527,17 +568,18 @@
             this.groupBox3.Controls.Add(this.lbCssCodes);
             this.groupBox3.Location = new System.Drawing.Point(6, 62);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(192, 427);
-            this.groupBox3.TabIndex = 0;
+            this.groupBox3.Size = new System.Drawing.Size(223, 427);
+            this.groupBox3.TabIndex = 15;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Notes";
             // 
             // btnAddCssCode
             // 
+            this.btnAddCssCode.Enabled = false;
             this.btnAddCssCode.Location = new System.Drawing.Point(6, 398);
             this.btnAddCssCode.Name = "btnAddCssCode";
-            this.btnAddCssCode.Size = new System.Drawing.Size(180, 23);
-            this.btnAddCssCode.TabIndex = 1;
+            this.btnAddCssCode.Size = new System.Drawing.Size(210, 23);
+            this.btnAddCssCode.TabIndex = 4;
             this.btnAddCssCode.Text = "Add New .css";
             this.btnAddCssCode.UseVisualStyleBackColor = true;
             this.btnAddCssCode.Click += new System.EventHandler(this.btnAddCssCode_Click);
@@ -546,40 +588,9 @@
             // 
             this.lbCssCodes.Location = new System.Drawing.Point(6, 19);
             this.lbCssCodes.Name = "lbCssCodes";
-            this.lbCssCodes.Size = new System.Drawing.Size(180, 368);
-            this.lbCssCodes.TabIndex = 0;
+            this.lbCssCodes.Size = new System.Drawing.Size(210, 368);
+            this.lbCssCodes.TabIndex = 2;
             this.lbCssCodes.SelectedIndexChanged += new System.EventHandler(this.lbCssCodes_SelectedIndexChanged);
-            // 
-            // btnDeleteAssignment
-            // 
-            this.btnDeleteAssignment.Location = new System.Drawing.Point(6, 390);
-            this.btnDeleteAssignment.Name = "btnDeleteAssignment";
-            this.btnDeleteAssignment.Size = new System.Drawing.Size(218, 23);
-            this.btnDeleteAssignment.TabIndex = 18;
-            this.btnDeleteAssignment.Text = "Delete";
-            this.btnDeleteAssignment.UseVisualStyleBackColor = true;
-            this.btnDeleteAssignment.Click += new System.EventHandler(this.btnDeleteAssignment_Click);
-            // 
-            // btnDeleteProject
-            // 
-            this.btnDeleteProject.Enabled = false;
-            this.btnDeleteProject.Location = new System.Drawing.Point(9, 409);
-            this.btnDeleteProject.Name = "btnDeleteProject";
-            this.btnDeleteProject.Size = new System.Drawing.Size(213, 23);
-            this.btnDeleteProject.TabIndex = 2;
-            this.btnDeleteProject.Text = "Delete";
-            this.btnDeleteProject.UseVisualStyleBackColor = true;
-            this.btnDeleteProject.Click += new System.EventHandler(this.btnDeleteProject_Click);
-            // 
-            // btnEditProject
-            // 
-            this.btnEditProject.Location = new System.Drawing.Point(9, 380);
-            this.btnEditProject.Name = "btnEditProject";
-            this.btnEditProject.Size = new System.Drawing.Size(213, 23);
-            this.btnEditProject.TabIndex = 3;
-            this.btnEditProject.Text = "Edit Project";
-            this.btnEditProject.UseVisualStyleBackColor = true;
-            this.btnEditProject.Click += new System.EventHandler(this.btnEditProject_Click);
             // 
             // Form1
             // 
@@ -587,8 +598,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(795, 524);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Project Management and Notes";
             this.groupBox1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -613,7 +625,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbSort;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TabPage tabPage2;

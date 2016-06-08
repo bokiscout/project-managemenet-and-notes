@@ -70,28 +70,28 @@
             this.tbUrl.Location = new System.Drawing.Point(15, 25);
             this.tbUrl.Name = "tbUrl";
             this.tbUrl.Size = new System.Drawing.Size(257, 20);
-            this.tbUrl.TabIndex = 3;
+            this.tbUrl.TabIndex = 0;
             // 
             // tbUserName
             // 
             this.tbUserName.Location = new System.Drawing.Point(15, 79);
             this.tbUserName.Name = "tbUserName";
             this.tbUserName.Size = new System.Drawing.Size(257, 20);
-            this.tbUserName.TabIndex = 4;
+            this.tbUserName.TabIndex = 1;
             // 
             // tbPassword
             // 
             this.tbPassword.Location = new System.Drawing.Point(15, 135);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(257, 20);
-            this.tbPassword.TabIndex = 5;
+            this.tbPassword.TabIndex = 2;
             // 
             // btnAdd
             // 
             this.btnAdd.Location = new System.Drawing.Point(15, 186);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(123, 23);
-            this.btnAdd.TabIndex = 6;
+            this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -101,7 +101,7 @@
             this.btnCancel.Location = new System.Drawing.Point(149, 186);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(123, 23);
-            this.btnCancel.TabIndex = 7;
+            this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);

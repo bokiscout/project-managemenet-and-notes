@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="project-management-and-notes.exe" version="1.0.0.11" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="project-management-and-notes.exe" version="1.0.0.13" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <description asmv2:publisher="project-management-and-notes" asmv2:product="project-management-and-notes" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
@@ -68,14 +68,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="project-management-and-notes.exe" size="54784">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="project-management-and-notes.exe" size="584704">
       <assemblyIdentity name="project-management-and-notes" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>simlPFMPK9niJEnuExQozIDQ15HxB2T+IRgV3h7Xe7I=</dsig:DigestValue>
+        <dsig:DigestValue>kCKKGFAOgnkN65ZNnYbvnhXB1Aq1JIHhaUBZVBCDamY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -94,7 +94,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>Xcxz1VQrnrUAaZ/hQkvXQaKLptxntsYKPjsoD9ZA+54=</dsig:DigestValue>
+      <dsig:DigestValue>3q/dh1VOnmcBq1x4rE/2kdCFYQRhtD5FIhU3YRa1N6k=</dsig:DigestValue>
     </hash>
   </file>
   <file name="ProjectsDb_log.ldf" size="802816" writeableType="applicationData">
@@ -103,7 +103,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>xWPa93a6xuq1RhAWGhCz05mSstIBL5oaL1kiUZuNIAQ=</dsig:DigestValue>
+      <dsig:DigestValue>KuNF9mxj/ER6ehqvzDXq3efftsr79cEkKo/cBhPCJWI=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

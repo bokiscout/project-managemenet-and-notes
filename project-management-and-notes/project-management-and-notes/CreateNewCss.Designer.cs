@@ -50,7 +50,7 @@
             this.rbCode.Location = new System.Drawing.Point(15, 82);
             this.rbCode.Name = "rbCode";
             this.rbCode.Size = new System.Drawing.Size(728, 448);
-            this.rbCode.TabIndex = 1;
+            this.rbCode.TabIndex = 2;
             this.rbCode.Text = "";
             // 
             // tbFunction
@@ -58,7 +58,7 @@
             this.tbFunction.Location = new System.Drawing.Point(15, 26);
             this.tbFunction.Name = "tbFunction";
             this.tbFunction.Size = new System.Drawing.Size(728, 20);
-            this.tbFunction.TabIndex = 2;
+            this.tbFunction.TabIndex = 1;
             // 
             // label2
             // 
@@ -74,7 +74,7 @@
             this.btnAdd.Location = new System.Drawing.Point(15, 548);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 4;
+            this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -84,7 +84,7 @@
             this.btnCancel.Location = new System.Drawing.Point(668, 548);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 5;
+            this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);

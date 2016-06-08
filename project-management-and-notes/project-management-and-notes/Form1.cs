@@ -12,13 +12,25 @@ namespace project_management_and_notes
 {
     public partial class Form1 : Form
     {
-        //private List<Project> projects { get; set; }
-        //private List<Note> notes { get; set; }
+
+        private bool readyForCheckBoxChange;    // is used to determine if ListBox vith assignments should change selected property or not
+                                                // 
+                                                // the problem ocurs when AssignmentsListBox is cleared and populated with new content
+                                                // a.k.a. refreshAsignment() is executed
+                                                //
+                                                // in this case selectedValueChanged() method is triged automatically but it shouldnt
+                                                // this method should be trigered only when double clicked over listBox item instead
+                                                //
+                                                // this variable is used as flag to determine if we should consider
+                                                // selectedValueChanged() as it is expected to happen atm or it not.
+                                                //
+                                                // as described above, it is expected all the time except when calling refreshAssignments()
 
         public Form1()
         {
             
             InitializeComponent();
+            readyForCheckBoxChange = true;
             refreshFromDatabase();
         }
 
@@ -42,8 +54,7 @@ namespace project_management_and_notes
             catch (Exception ex)
             {
                 MessageBox.Show("refreshFromDatabase\n\n" + ex.ToString());
-            }
-            
+            }   
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -57,6 +68,32 @@ namespace project_management_and_notes
             this.refreshLoginInfo();
             this.refreshAssignments();
             this.refreshCssCodes();
+
+            Project p = lbProjects.SelectedItem as Project;
+            if (p != null)
+            {
+                enableProjectControls();
+            }
+            else
+            {
+                disableProjectControls();
+            }
+        }
+
+        private void disableProjectControls()
+        {
+            btnEditProject.Enabled = false;
+            btnAddLoginInfo.Enabled = false;
+            btnAddAssignment.Enabled = false;
+            btnAddCssCode.Enabled = false;
+        }
+
+        private void enableProjectControls()
+        {
+            btnEditProject.Enabled = true;
+            btnAddLoginInfo.Enabled = true;
+            btnAddAssignment.Enabled = true;
+            btnAddCssCode.Enabled = true;
         }
 
         private void refreshCssCodes()
@@ -99,6 +136,8 @@ namespace project_management_and_notes
 
         private void refreshAssignments()
         {
+            readyForCheckBoxChange = false;     // description about this variable is writen next to it's declaration
+
             clbAssignments.SelectedIndex = -1;
             clbAssignments.Items.Clear();
 
@@ -134,7 +173,8 @@ namespace project_management_and_notes
             {
                 MessageBox.Show("refreshAssignments\n\n" + ex.ToString());
             }
-            
+
+            readyForCheckBoxChange = true;  // description about this variable is writen next to it's declaration
         }
 
         private void refreshLoginInfo()
@@ -181,20 +221,53 @@ namespace project_management_and_notes
 
         private void RefreshProjectDetail()
         {
-            // ********************************************************
-            // to do
-            //
-            // read from database instead of object in the list box!
-            //********************************************************
-            Project p = lbProjects.SelectedItem as Project;
-
-            if (p != null)
+            Project project = lbProjects.SelectedItem as Project;
+            if (project == null)
             {
-                tbProjectName.Text = p.Name;
-                tbClientName.Text = p.Client;
+                return;
+            }
 
-                tbStartDate.Text = p.StartDate.ToString();
-                tbDeadLine.Text = p.DeadLine.ToString();
+            Project projectFromDB = null;
+            List<Assignment> assignments;
+
+            try
+            {
+                using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                {
+                    List<Project> projects = entities.Projects.ToList();
+
+                    foreach (Project p in projects)
+                    {
+                        if (p.Id == project.Id)
+                        {
+                            projectFromDB = p;
+                            projectFromDB.Status = getProjectStatus(projectFromDB.Id);
+                            entities.SaveChanges();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("refreshProjectDetail\n\n" + ex.ToString());
+            }
+
+            if (projectFromDB != null)
+            {
+                tbProjectName.Text = projectFromDB.Name;
+                tbClientName.Text = projectFromDB.Client;
+
+                tbStartDate.Text = projectFromDB.StartDate.ToString();
+                tbDeadLine.Text = projectFromDB.DeadLine.ToString();
+
+                if (projectFromDB.Status == true)
+                {
+                    tbStatus.Text = "Done";
+                }
+                else
+                {
+                    tbStatus.Text = "Unfinished";
+                }
             }
             else
             {
@@ -203,6 +276,46 @@ namespace project_management_and_notes
 
                 tbStartDate.Clear();
                 tbDeadLine.Clear();
+
+                tbStatus.Clear();
+            }           
+        }
+
+        private bool getProjectStatus(int ID)
+        {
+            List<Assignment> assignments = null;
+            bool isUnfinished = false;
+
+            try
+            {
+                using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                {
+                    assignments = entities.Assignments.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("getProjectStatus\n\n" + ex.ToString());
+            }
+
+            foreach (Assignment a in assignments)
+            {
+                if (a.ProjectId == ID)
+                {
+                    if (a.Done == false)
+                    {
+                        isUnfinished = true;
+                    }
+                }
+            }
+
+            if (isUnfinished)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
 
@@ -212,10 +325,12 @@ namespace project_management_and_notes
             if (c != null)
             {
                 rtbCssCodeDetails.Text = c.Code;
+                btnEditCss.Enabled = true;
             }
             else
             {
                 rtbCssCodeDetails.Clear();
+                btnEditCss.Enabled = false;
             }
         }
 
@@ -274,8 +389,37 @@ namespace project_management_and_notes
 
         private void clbAssignments_SelectedValueChanged(object sender, EventArgs e)
         {
-            //Assignment a = clbAssignments.SelectedItem as Assignment;
-            //a.SetIsDone(!a.GetIsDone());
+            Assignment assignment = clbAssignments.SelectedItem as Assignment;
+
+            if (assignment != null && readyForCheckBoxChange)
+            {
+                try
+                {
+                    using (ProjectsDbEntities entititties = new ProjectsDbEntities())
+                    {
+                        List<Assignment> assignments = entititties.Assignments.ToList();
+                        foreach (Assignment a in assignments)
+                        {
+                            if (a.Id == assignment.Id)
+                            {
+                                a.Done = !a.Done;
+                                entititties.SaveChanges();
+                            }
+                        }
+                        refreshAssignments();
+                        RefreshProjectDetail();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("clbAssignments_SelectedValueChanged\n\n" + e.ToString());
+                }
+            }
+            else
+            {
+                // MessageBox.Show("clbAssignments_SelectedValueChanged\n\nNull value returnet by ComboListBox");
+                return;
+            }
         }
 
         private void btnEditAssignment_Click(object sender, EventArgs e)
@@ -346,6 +490,15 @@ namespace project_management_and_notes
                 tbLoginInfoUsername.Text = l.Username;
                 tbLoginInfoPassword.Text = l.Password;
                 tbLoginInfoUrl.Text = l.Url;
+
+                btnEdiLoginInfo.Enabled = true;
+                btnAddLoginInfo.Enabled = true;
+                btnDeleteLoginInfo.Enabled = true;
+            }
+            else
+            {
+                btnEdiLoginInfo.Enabled = false;
+                btnDeleteLoginInfo.Enabled = false;
             }
         }
 
@@ -602,7 +755,7 @@ namespace project_management_and_notes
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            String query = tbSearch.Text;
+            String query = tbSearch.Text.ToLower().Trim();
             
             if(query.Trim().Length == 0){
                 MessageBox.Show("Can't search for empty string!");
@@ -617,7 +770,7 @@ namespace project_management_and_notes
                     List<CSSCode> cssCodes = context.CSSCodes.ToList();
                     foreach (CSSCode c in cssCodes)
                     {
-                        if (c.Function.Contains(query))
+                        if (c.Function.ToLower().Contains(query))
                         {
                             lbCssCodes.Items.Add(c);
                         }
@@ -627,8 +780,108 @@ namespace project_management_and_notes
             catch (Exception ex)
             {
                 MessageBox.Show("btnSearch_click\n\n" + ex.ToString());
-                //
             }   
+        }
+
+        private void clbAssignments_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Assignment asignment = clbAssignments.SelectedItem as Assignment;
+            if (asignment != null)
+            {
+                btnEditAssignment.Enabled = true;
+                btnDeleteAssignment.Enabled = true;
+            }
+            else
+            {
+                btnEditAssignment.Enabled = false;
+                btnDeleteAssignment.Enabled = false;
+            }
+        }
+
+        private void cbSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbSort.Text == "Deadline")
+            {
+                lbpRojectsSortByDeadline();
+            }
+            else if (cbSort.Text == "Status")
+            {
+                lbpRojectsSortByStatus();
+                //MessageBox.Show("sorting by status");
+            }
+        }
+
+        private void lbpRojectsSortByStatus()
+        {
+            List<Project> projects = new List<Project>();
+
+            try
+            {
+                using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                {
+                    projects = entities.Projects.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("lbpRojectsSortByStatus\n\n" + ex.ToString());
+            }
+
+            projects.Sort(projectComparatorByStatus);
+
+            lbProjects.SelectedIndex = -1;
+            lbProjects.Items.Clear();
+            foreach (Project p in projects)
+            {
+                lbProjects.Items.Add(p);
+            }
+        }
+
+        private int projectComparatorByStatus(Project x, Project y)
+        {
+            bool xStatus = (bool)x.Status;
+            bool yStatus = (bool)y.Status;
+
+            if (xStatus && yStatus)
+            {
+                return x.Name.CompareTo(y.Name);
+            }
+            else
+            {
+                if (xStatus)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        private void lbpRojectsSortByDeadline()
+        {
+            List<Project> projects = new List<Project>();
+
+            foreach (Project p in lbProjects.Items)
+            {
+                projects.Add(p);
+            }
+
+            projects.Sort(projectComparatorByDate);
+
+            lbProjects.SelectedIndex = -1;
+            lbProjects.Items.Clear();
+
+            foreach (Project p in projects)
+            {
+                lbProjects.Items.Add(p);
+            }
+        }
+
+        private int projectComparatorByDate(Project x, Project y)
+        {
+            return (x.DeadLine.Value.Date.ToString().CompareTo(y.DeadLine.Value.Date.ToString()));
         }
     }
 }

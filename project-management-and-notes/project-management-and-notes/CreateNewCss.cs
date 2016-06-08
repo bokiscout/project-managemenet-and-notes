@@ -33,7 +33,7 @@ namespace project_management_and_notes
             //cssCode.SetCode(rbCode.Text);
             //cssCode.SetDescription(tbFunction.Text);
 
-            cssCode.Function = tbFunction.Text;
+            cssCode.Function = tbFunction.Text.Trim();
             cssCode.Code = rbCode.Text;
 
             DialogResult = DialogResult.OK;

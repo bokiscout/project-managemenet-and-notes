@@ -28,6 +28,7 @@ namespace project_management_and_notes
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> FinishDate { get; set; }
         public Nullable<System.DateTime> DeadLine { get; set; }
+        public Nullable<bool> Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Assignment> Assignments { get; set; }

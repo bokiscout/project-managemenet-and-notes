@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -36,6 +37,8 @@
             this.tbClientName = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.epCreateNewProject = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.epCreateNewProject)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -70,28 +73,28 @@
             this.dtpDeadLine.Location = new System.Drawing.Point(15, 123);
             this.dtpDeadLine.Name = "dtpDeadLine";
             this.dtpDeadLine.Size = new System.Drawing.Size(257, 20);
-            this.dtpDeadLine.TabIndex = 3;
+            this.dtpDeadLine.TabIndex = 2;
             // 
             // tbProjectName
             // 
             this.tbProjectName.Location = new System.Drawing.Point(15, 25);
             this.tbProjectName.Name = "tbProjectName";
             this.tbProjectName.Size = new System.Drawing.Size(257, 20);
-            this.tbProjectName.TabIndex = 4;
+            this.tbProjectName.TabIndex = 0;
             // 
             // tbClientName
             // 
             this.tbClientName.Location = new System.Drawing.Point(15, 74);
             this.tbClientName.Name = "tbClientName";
             this.tbClientName.Size = new System.Drawing.Size(257, 20);
-            this.tbClientName.TabIndex = 5;
+            this.tbClientName.TabIndex = 1;
             // 
             // btnAdd
             // 
             this.btnAdd.Location = new System.Drawing.Point(15, 184);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(122, 23);
-            this.btnAdd.TabIndex = 6;
+            this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -101,15 +104,20 @@
             this.btnCancel.Location = new System.Drawing.Point(150, 184);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(122, 23);
-            this.btnCancel.TabIndex = 7;
+            this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // epCreateNewProject
+            // 
+            this.epCreateNewProject.ContainerControl = this;
             // 
             // CreateNewProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 221);
+            this.ClientSize = new System.Drawing.Size(294, 221);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.tbClientName);
@@ -120,6 +128,7 @@
             this.Controls.Add(this.label1);
             this.Name = "CreateNewProject";
             this.Text = "CreateNewProject";
+            ((System.ComponentModel.ISupportInitialize)(this.epCreateNewProject)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -135,5 +144,6 @@
         private System.Windows.Forms.TextBox tbClientName;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.ErrorProvider epCreateNewProject;
     }
 }

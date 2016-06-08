@@ -31,8 +31,8 @@ namespace project_management_and_notes
         {
             project = new Project();
 
-            String projectName = tbProjectName.Text;
-            String clientName = tbClientName.Text;
+            String projectName = tbProjectName.Text.Trim();
+            String clientName = tbClientName.Text.Trim();
             DateTime deadline = dtpDeadLine.Value.Date;
 
             //project.SetClientName(clientName);
@@ -43,6 +43,7 @@ namespace project_management_and_notes
             project.Client = clientName;
             project.StartDate = DateTime.Now;
             project.DeadLine = deadline;
+            project.Status = false;
 
             DialogResult = DialogResult.OK;
         }
@@ -50,6 +51,12 @@ namespace project_management_and_notes
         public Project GetProjet()
         {
             return this.project;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

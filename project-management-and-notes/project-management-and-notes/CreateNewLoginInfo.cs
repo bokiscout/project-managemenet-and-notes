@@ -36,9 +36,9 @@ namespace project_management_and_notes
             //loginInfo.SetUserName(tbUserName.Text);
             //loginInfo.SetPassword(tbPassword.Text);
 
-            loginInfo.Username = tbUserName.Text;
-            loginInfo.Password = tbPassword.Text;
-            loginInfo.Url = tbUrl.Text;
+            loginInfo.Username = tbUserName.Text.Trim();
+            loginInfo.Password = tbPassword.Text.Trim();
+            loginInfo.Url = tbUrl.Text.Trim();
 
             DialogResult = DialogResult.OK;
         }
