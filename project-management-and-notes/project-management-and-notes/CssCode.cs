@@ -11,6 +11,7 @@ namespace project_management_and_notes
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
     
     public partial class CSSCode
     {
@@ -24,6 +25,17 @@ namespace project_management_and_notes
         public override string ToString()
         {
             return Function;
+        }
+
+        internal string toBackUpFormat()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(Id + "____");
+            sb.Append(ProjectId + "____");
+            sb.Append(Function + "____");
+            sb.Append(Code + "EOL\n");
+
+            return sb.ToString();
         }
     }
 }

@@ -39,7 +39,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="text" />
-          <Property Name="Client" Type="nchar" MaxLength="10" />
+          <Property Name="Client" Type="text" />
           <Property Name="StartDate" Type="datetime" />
           <Property Name="FinishDate" Type="datetime" />
           <Property Name="DeadLine" Type="datetime" />
@@ -140,7 +140,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Client" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Client" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="StartDate" Type="DateTime" Precision="3" />
           <Property Name="FinishDate" Type="DateTime" Precision="3" />
           <Property Name="DeadLine" Type="DateTime" Precision="3" />

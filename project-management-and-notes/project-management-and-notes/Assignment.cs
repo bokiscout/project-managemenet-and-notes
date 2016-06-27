@@ -11,6 +11,7 @@ namespace project_management_and_notes
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
     
     public partial class Assignment
     {
@@ -25,6 +26,16 @@ namespace project_management_and_notes
         {
             return ToDo;
         }
-    
+
+        internal string toBackUpFormat()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(Id + " ");
+            sb.Append(ProjectId + " ");
+            sb.Append(ToDo + " ");
+            sb.Append(Done + Environment.NewLine);
+
+            return sb.ToString();
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace project_management_and_notes
     public partial class CreateNewProject : Form
     {
         private Project project { get; set; }
+
         public CreateNewProject()
         {
             InitializeComponent();

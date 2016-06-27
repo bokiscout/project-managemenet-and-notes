@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbProjects = new System.Windows.Forms.GroupBox();
             this.btnEditProject = new System.Windows.Forms.Button();
             this.btnDeleteProject = new System.Windows.Forms.Button();
             this.btnAddProject = new System.Windows.Forms.Button();
@@ -39,7 +39,7 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.cbSort = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbDetails = new System.Windows.Forms.GroupBox();
             this.gbLoginInfo = new System.Windows.Forms.GroupBox();
             this.btnDeleteLoginInfo = new System.Windows.Forms.Button();
             this.btnEdiLoginInfo = new System.Windows.Forms.Button();
@@ -72,36 +72,44 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.Search = new System.Windows.Forms.Label();
             this.tbSearch = new System.Windows.Forms.TextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.gbNotesDetails = new System.Windows.Forms.GroupBox();
             this.btnEditCss = new System.Windows.Forms.Button();
             this.rtbCssCodeDetails = new System.Windows.Forms.RichTextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.gbCssCides = new System.Windows.Forms.GroupBox();
             this.btnAddCssCode = new System.Windows.Forms.Button();
             this.lbCssCodes = new System.Windows.Forms.ListBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.groupBox1.SuspendLayout();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.tsmFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmExportBackup = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmImportBackup = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gbProjects.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.gbDetails.SuspendLayout();
             this.gbLoginInfo.SuspendLayout();
             this.gbAssignments.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.gbNotesDetails.SuspendLayout();
+            this.gbCssCides.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // gbProjects
             // 
-            this.groupBox1.Controls.Add(this.btnEditProject);
-            this.groupBox1.Controls.Add(this.btnDeleteProject);
-            this.groupBox1.Controls.Add(this.btnAddProject);
-            this.groupBox1.Controls.Add(this.lbProjects);
-            this.groupBox1.Location = new System.Drawing.Point(6, 51);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(228, 438);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Projects";
+            this.gbProjects.Controls.Add(this.btnEditProject);
+            this.gbProjects.Controls.Add(this.btnDeleteProject);
+            this.gbProjects.Controls.Add(this.btnAddProject);
+            this.gbProjects.Controls.Add(this.lbProjects);
+            this.gbProjects.Location = new System.Drawing.Point(6, 51);
+            this.gbProjects.Name = "gbProjects";
+            this.gbProjects.Size = new System.Drawing.Size(228, 438);
+            this.gbProjects.TabIndex = 0;
+            this.gbProjects.TabStop = false;
+            this.gbProjects.Text = "Projects";
             // 
             // btnEditProject
             // 
@@ -147,10 +155,10 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(1, 1);
+            this.tabControl1.Location = new System.Drawing.Point(1, 27);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(796, 522);
+            this.tabControl1.Size = new System.Drawing.Size(796, 519);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -158,12 +166,12 @@
             this.tabPage1.Controls.Add(this.comboBox2);
             this.tabPage1.Controls.Add(this.cbSort);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Controls.Add(this.gbDetails);
+            this.tabPage1.Controls.Add(this.gbProjects);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(788, 496);
+            this.tabPage1.Size = new System.Drawing.Size(788, 493);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Projects";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -202,27 +210,27 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Sort by";
             // 
-            // groupBox2
+            // gbDetails
             // 
-            this.groupBox2.Controls.Add(this.gbLoginInfo);
-            this.groupBox2.Controls.Add(this.gbAssignments);
-            this.groupBox2.Controls.Add(this.tbProjectName);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.tbClientName);
-            this.groupBox2.Controls.Add(this.tbStatus);
-            this.groupBox2.Controls.Add(this.linkLabel1);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.tbDeadLine);
-            this.groupBox2.Controls.Add(this.tbStartDate);
-            this.groupBox2.Location = new System.Drawing.Point(240, 51);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(538, 438);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Details";
+            this.gbDetails.Controls.Add(this.gbLoginInfo);
+            this.gbDetails.Controls.Add(this.gbAssignments);
+            this.gbDetails.Controls.Add(this.tbProjectName);
+            this.gbDetails.Controls.Add(this.label6);
+            this.gbDetails.Controls.Add(this.label5);
+            this.gbDetails.Controls.Add(this.tbClientName);
+            this.gbDetails.Controls.Add(this.tbStatus);
+            this.gbDetails.Controls.Add(this.linkLabel1);
+            this.gbDetails.Controls.Add(this.label7);
+            this.gbDetails.Controls.Add(this.label4);
+            this.gbDetails.Controls.Add(this.label2);
+            this.gbDetails.Controls.Add(this.tbDeadLine);
+            this.gbDetails.Controls.Add(this.tbStartDate);
+            this.gbDetails.Location = new System.Drawing.Point(240, 51);
+            this.gbDetails.Name = "gbDetails";
+            this.gbDetails.Size = new System.Drawing.Size(542, 438);
+            this.gbDetails.TabIndex = 1;
+            this.gbDetails.TabStop = false;
+            this.gbDetails.Text = "Details";
             // 
             // gbLoginInfo
             // 
@@ -351,7 +359,7 @@
             this.gbAssignments.Controls.Add(this.btnAddAssignment);
             this.gbAssignments.Location = new System.Drawing.Point(304, 13);
             this.gbAssignments.Name = "gbAssignments";
-            this.gbAssignments.Size = new System.Drawing.Size(228, 419);
+            this.gbAssignments.Size = new System.Drawing.Size(227, 419);
             this.gbAssignments.TabIndex = 26;
             this.gbAssignments.TabStop = false;
             this.gbAssignments.Text = "Assignments";
@@ -370,7 +378,7 @@
             // clbAssignments
             // 
             this.clbAssignments.FormattingEnabled = true;
-            this.clbAssignments.Location = new System.Drawing.Point(10, 19);
+            this.clbAssignments.Location = new System.Drawing.Point(6, 19);
             this.clbAssignments.Name = "clbAssignments";
             this.clbAssignments.Size = new System.Drawing.Size(210, 304);
             this.clbAssignments.TabIndex = 17;
@@ -391,7 +399,7 @@
             // btnAddAssignment
             // 
             this.btnAddAssignment.Enabled = false;
-            this.btnAddAssignment.Location = new System.Drawing.Point(6, 332);
+            this.btnAddAssignment.Location = new System.Drawing.Point(6, 329);
             this.btnAddAssignment.Name = "btnAddAssignment";
             this.btnAddAssignment.Size = new System.Drawing.Size(210, 23);
             this.btnAddAssignment.TabIndex = 16;
@@ -496,12 +504,12 @@
             this.tabPage2.Controls.Add(this.btnSearch);
             this.tabPage2.Controls.Add(this.Search);
             this.tabPage2.Controls.Add(this.tbSearch);
-            this.tabPage2.Controls.Add(this.groupBox4);
-            this.tabPage2.Controls.Add(this.groupBox3);
+            this.tabPage2.Controls.Add(this.gbNotesDetails);
+            this.tabPage2.Controls.Add(this.gbCssCides);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(788, 496);
+            this.tabPage2.Size = new System.Drawing.Size(788, 493);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Notes";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -532,16 +540,16 @@
             this.tbSearch.Size = new System.Drawing.Size(655, 20);
             this.tbSearch.TabIndex = 0;
             // 
-            // groupBox4
+            // gbNotesDetails
             // 
-            this.groupBox4.Controls.Add(this.btnEditCss);
-            this.groupBox4.Controls.Add(this.rtbCssCodeDetails);
-            this.groupBox4.Location = new System.Drawing.Point(235, 62);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(543, 427);
-            this.groupBox4.TabIndex = 17;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Note details";
+            this.gbNotesDetails.Controls.Add(this.btnEditCss);
+            this.gbNotesDetails.Controls.Add(this.rtbCssCodeDetails);
+            this.gbNotesDetails.Location = new System.Drawing.Point(235, 62);
+            this.gbNotesDetails.Name = "gbNotesDetails";
+            this.gbNotesDetails.Size = new System.Drawing.Size(543, 427);
+            this.gbNotesDetails.TabIndex = 17;
+            this.gbNotesDetails.TabStop = false;
+            this.gbNotesDetails.Text = "Note details";
             // 
             // btnEditCss
             // 
@@ -562,16 +570,16 @@
             this.rtbCssCodeDetails.TabIndex = 3;
             this.rtbCssCodeDetails.Text = "";
             // 
-            // groupBox3
+            // gbCssCides
             // 
-            this.groupBox3.Controls.Add(this.btnAddCssCode);
-            this.groupBox3.Controls.Add(this.lbCssCodes);
-            this.groupBox3.Location = new System.Drawing.Point(6, 62);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(223, 427);
-            this.groupBox3.TabIndex = 15;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Notes";
+            this.gbCssCides.Controls.Add(this.btnAddCssCode);
+            this.gbCssCides.Controls.Add(this.lbCssCodes);
+            this.gbCssCides.Location = new System.Drawing.Point(6, 62);
+            this.gbCssCides.Name = "gbCssCides";
+            this.gbCssCides.Size = new System.Drawing.Size(223, 427);
+            this.gbCssCides.TabIndex = 15;
+            this.gbCssCides.TabStop = false;
+            this.gbCssCides.Text = "Notes";
             // 
             // btnAddCssCode
             // 
@@ -592,47 +600,110 @@
             this.lbCssCodes.TabIndex = 2;
             this.lbCssCodes.SelectedIndexChanged += new System.EventHandler(this.lbCssCodes_SelectedIndexChanged);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmFile,
+            this.tsbAbout});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(788, 24);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // tsmFile
+            // 
+            this.tsmFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmExit,
+            this.tsmExportBackup,
+            this.tsmImportBackup});
+            this.tsmFile.Name = "tsmFile";
+            this.tsmFile.Size = new System.Drawing.Size(37, 20);
+            this.tsmFile.Text = "File";
+            // 
+            // tsmExit
+            // 
+            this.tsmExit.Name = "tsmExit";
+            this.tsmExit.Size = new System.Drawing.Size(152, 22);
+            this.tsmExit.Text = "Exit";
+            this.tsmExit.Click += new System.EventHandler(this.tsmExit_Click);
+            // 
+            // tsmExportBackup
+            // 
+            this.tsmExportBackup.Name = "tsmExportBackup";
+            this.tsmExportBackup.Size = new System.Drawing.Size(152, 22);
+            this.tsmExportBackup.Text = "Export backup";
+            this.tsmExportBackup.Click += new System.EventHandler(this.tsmExportBackup_Click);
+            // 
+            // tsmImportBackup
+            // 
+            this.tsmImportBackup.Name = "tsmImportBackup";
+            this.tsmImportBackup.Size = new System.Drawing.Size(152, 22);
+            this.tsmImportBackup.Text = "Import backup";
+            this.tsmImportBackup.Click += new System.EventHandler(this.importFromBackupToolStripMenuItem_Click);
+            // 
+            // tsbAbout
+            // 
+            this.tsbAbout.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.tsbAbout.Name = "tsbAbout";
+            this.tsbAbout.Size = new System.Drawing.Size(44, 20);
+            this.tsbAbout.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(795, 524);
+            this.ClientSize = new System.Drawing.Size(788, 553);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Project Management and Notes";
-            this.groupBox1.ResumeLayout(false);
+            this.Resize += new System.EventHandler(this.Form1_Resize);
+            this.gbProjects.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.gbDetails.ResumeLayout(false);
+            this.gbDetails.PerformLayout();
             this.gbLoginInfo.ResumeLayout(false);
             this.gbLoginInfo.PerformLayout();
             this.gbAssignments.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
+            this.gbNotesDetails.ResumeLayout(false);
+            this.gbCssCides.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbProjects;
         private System.Windows.Forms.ListBox lbProjects;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ComboBox cbSort;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gbDetails;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label Search;
         private System.Windows.Forms.TextBox tbSearch;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox gbNotesDetails;
+        private System.Windows.Forms.GroupBox gbCssCides;
         private System.Windows.Forms.RichTextBox rtbCssCodeDetails;
         private System.Windows.Forms.ListBox lbCssCodes;
         private System.Windows.Forms.Button btnSearch;
@@ -670,6 +741,13 @@
         private System.Windows.Forms.Button btnDeleteAssignment;
         private System.Windows.Forms.Button btnDeleteProject;
         private System.Windows.Forms.Button btnEditProject;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem tsmFile;
+        private System.Windows.Forms.ToolStripMenuItem tsmExit;
+        private System.Windows.Forms.ToolStripMenuItem tsbAbout;
+        private System.Windows.Forms.ToolStripMenuItem tsmExportBackup;
+        private System.Windows.Forms.ToolStripMenuItem tsmImportBackup;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -883,5 +884,377 @@ namespace project_management_and_notes
         {
             return (x.DeadLine.Value.Date.ToString().CompareTo(y.DeadLine.Value.Date.ToString()));
         }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            draw_elements();
+        }
+
+        private void draw_elements()
+        {
+            int width = this.Width;
+            int height = this.Height -65;
+            // MessageBox.Show("width: " + width + " height: " + height);
+
+            tabControl1.Width = width;
+            tabControl1.Height = height;
+
+            tabPage1.Width = width;
+            tabPage2.Width = width;
+
+            //gbProjects.Width = width / 3 -40;
+            //lbProjects.Width = gbProjects.Width -20;
+            gbProjects.Height = height - 85;
+            lbProjects.Height = gbProjects.Height - 110;
+
+            btnAddProject.Location = new Point(btnAddProject.Location.X, gbProjects.Location.Y + lbProjects.Height - 25);
+            btnEditProject.Location = new Point(btnAddProject.Location.X, btnAddProject.Location.Y + 25);
+            btnDeleteProject.Location = new Point(btnAddProject.Location.X, btnEditProject.Location.Y + 25);
+
+            //gbDetails.Location = new Point((width/3) -20, 50);
+            gbDetails.Height = gbProjects.Height;
+            gbAssignments.Height = gbProjects.Height - 20;
+            clbAssignments.Height = gbAssignments.Height - 100;
+
+            btnAddAssignment.Location = new Point(btnAddAssignment.Location.X, btnAddProject.Location.Y -15);
+            btnEditAssignment.Location = new Point(btnEditAssignment.Location.X, btnAddAssignment.Location.Y + 25);
+            btnDeleteAssignment.Location = new Point(btnDeleteAssignment.Location.X, btnEditAssignment.Location.Y + 25);
+
+            gbCssCides.Height = height -100;
+            lbCssCodes.Height = gbCssCides.Height - 50;
+            
+            btnAddCssCode.Location = new Point(6, gbCssCides.Location.Y + lbCssCodes.Height -35);
+
+            gbNotesDetails.Width = width - lbCssCodes.Width - 60;
+            gbNotesDetails.Height = gbCssCides.Height;
+
+            rtbCssCodeDetails.Width = gbNotesDetails.Width - 10;
+            rtbCssCodeDetails.Height = lbCssCodes.Height;
+
+            btnEditCss.Location = new Point(6, btnAddCssCode.Location.Y);
+            btnEditCss.Width = rtbCssCodeDetails.Width;
+
+        }
+
+        private void importFromBackupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Importing from backup is not working.
+            // when object is added from backup file it has new id
+            // this couse for example:
+            // when adding assignment to project that had id of 5
+            // the same project now has new random id
+            // so we can not link them together
+
+            MessageBox.Show("Not working properly");
+
+            //clearDatabase();
+            //refreshFromDatabase();
+
+            //string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            //importProjectsFromBackup(path);
+            //importAssignmentsFromBackup(path);
+            //importCssCodesFromBackup(path);
+            //importLoginInfoFromBackup(path);
+        }
+
+        private void clearDatabase()
+        {
+            try
+            {
+                using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                {
+                    List<CSSCode> cssCodes = entities.CSSCodes.ToList();
+                    List<Assignment> assignments = entities.Assignments.ToList();
+                    List<LoginInfo> loginInfoes = entities.LoginInfoes.ToList();
+                    List<Project> projects = entities.Projects.ToList();
+
+                    foreach (CSSCode c in cssCodes)
+                    {
+                        entities.CSSCodes.Remove(c);
+                    }
+
+                    foreach (Assignment a in assignments)
+                    {
+                        entities.Assignments.Remove(a);
+                    }
+
+                    foreach (LoginInfo l in loginInfoes)
+                    {
+                        entities.LoginInfoes.Remove(l);
+                    }
+
+                    foreach (Project p in projects)
+                    {
+                        entities.Projects.Remove(p);
+                    }
+
+                    entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("clearDatabase\n\n" + ex.ToString());
+            }
+        }
+
+        private void importLoginInfoFromBackup(string path)
+        {
+            try
+            {
+                string[] lines = System.IO.File.ReadAllLines(path + @"\loginInfo.txt");
+                foreach (string line in lines)
+                {
+                    LoginInfo l = new LoginInfo();
+
+                    string[] parts = line.Split(' ');
+
+                    l.Id = Int32.Parse(parts[0]);
+                    l.ProjectId = Int32.Parse(parts[1]);
+                    l.Url = parts[2];
+                    l.Username = parts[3];
+                    l.Password = parts[4];
+
+                    using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                    {
+                        entities.LoginInfoes.Add(l);
+                        entities.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("importLoginInfoFromBackup\n\n" + ex.ToString());
+            }
+        }
+
+        private void importCssCodesFromBackup(string path)
+        {
+            try
+            {
+                String input = System.IO.File.ReadAllText(path + @"/cssCodes.txt");
+                
+                String[] parts = Regex.Split(input, "EOL\n");
+                foreach (string part in parts)
+                {
+                    if (part.Length > 0)
+                    {
+                        string[] actualData = Regex.Split(part, "____");
+                        CSSCode css = new CSSCode();
+                        
+                        css.Id = Int32.Parse(actualData[0]);
+                        css.ProjectId = Int32.Parse(actualData[1]);
+                        css.Function = actualData[2];
+                        css.Code = actualData[3];
+
+                        using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                        {
+                            entities.CSSCodes.Add(css);
+                            entities.SaveChanges();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("importCssCodesFromBackup\n\n" + ex.ToString());
+            }
+        }
+
+        private void importAssignmentsFromBackup(string path)
+        {
+            try
+            {
+                String[] lines = System.IO.File.ReadAllLines(path + @"/assignments.txt");
+                foreach (string line in lines)
+                {
+                    Assignment assignment = new Assignment();
+
+                    string[] parts = line.Split(' ');
+
+                    assignment.Id = Int32.Parse(parts[0]);
+                    assignment.ProjectId = Int32.Parse(parts[1]);
+                    assignment.ToDo = parts[2];
+                    
+                    if (parts[3] == "False")
+                    {
+                        assignment.Done = false;
+                    }
+                    else
+                    {
+                        assignment.Done = true;
+                    }
+
+                    using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                    {
+                        entities.Assignments.Add(assignment);
+                        entities.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("importAssignmentsFromBackup\n\n" + ex.ToString());
+            }
+        }
+
+        private void importProjectsFromBackup(string path)
+        {
+            try
+            {
+                string[] lines = System.IO.File.ReadAllLines(path + @"\projects.txt");
+
+                foreach (string line in lines)
+                {
+                    string[] parts = line.Split(' ');
+
+                    Project p = new Project();
+
+                    p.Id = Int32.Parse(parts[0]);
+                    p.Name = parts[1];
+                    p.Client = parts[2];
+                    p.StartDate = DateTime.Parse(parts[3]);
+                    if (parts[4].Length > 1)
+                    {
+                        p.FinishDate = DateTime.Parse(parts[4]);
+                    }
+                    else
+                    {
+                        p.FinishDate = null;
+                    }
+                    p.DeadLine = DateTime.Parse(parts[5]);
+
+                    using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                    {
+                        entities.Projects.Add(p);
+                        entities.SaveChanges();
+                    }
+                }
+
+                refreshFromDatabase();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("importProjectsFromBackup\n\n" + ex.ToString());
+            }
+        }
+
+        private void tsmExportBackup_Click(object sender, EventArgs e)
+        {
+            // make .bak of .mdf file instead of making backup as plain text
+            MessageBox.Show("Not working properly");
+            
+            //string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            //exportProjectsAsBackup(path);
+            //exportAssignmentsAsBackup(path);
+            //exportCssCodeAsBackup(path);
+            //exportLoginInfoAsBackup(path);
+        }
+
+        private void exportProjectsAsBackup(string path)
+        {
+            try
+            {
+                List<Project> projects = new List<Project>();
+                string result = "";
+
+                using (ProjectsDbEntities entitties = new ProjectsDbEntities())
+                {
+                    projects = entitties.Projects.ToList();
+                }
+
+                foreach (Project p in projects)
+                {
+                    result += p.toBackupFormat();
+                }
+
+                System.IO.File.WriteAllText(path + @"\projects.txt", result);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("exportProjectsAsBackup\n\n" + ex.Message.ToString());
+            }
+        }
+
+        private void exportAssignmentsAsBackup(string path)
+        {
+            try
+            {
+                List<Assignment> assignments = new List<Assignment>();
+                string result = "";
+
+                using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                {
+                    assignments = entities.Assignments.ToList();
+                }
+
+                foreach (Assignment a in assignments)
+                {
+                    result += a.toBackUpFormat();
+                }
+
+                System.IO.File.WriteAllText(path + @"\assignments.txt", result);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ExportAssignmentsAsBackup\n\n" + ex.ToString());
+            }
+        }
+
+        private void exportCssCodeAsBackup(string path)
+        {
+            try
+            {
+                List<CSSCode> cssCodes = new List<CSSCode>();
+                string result = "";
+
+                using(ProjectsDbEntities entities = new ProjectsDbEntities())
+                {
+                    cssCodes = entities.CSSCodes.ToList();   
+                }
+
+                foreach (CSSCode css in cssCodes)
+                {
+                    result += css.toBackUpFormat();
+                }
+
+                System.IO.File.WriteAllText(path + @"\cssCodes.txt", result);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("exportCssCodeAsBackup\n\n" + ex.ToString());
+            }
+        }
+
+        private void exportLoginInfoAsBackup(string path)
+        {
+            try
+            {
+                List<LoginInfo> loginInfoes = new List<LoginInfo>();
+                string result = "";
+
+                using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                {
+                    loginInfoes = entities.LoginInfoes.ToList();
+                }
+
+                foreach (LoginInfo l in loginInfoes)
+                {
+                    result += l.toBackUpFormat();
+                }
+
+                System.IO.File.WriteAllText(path + @"\loginInfo.txt", result);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("exportLoginInfoAsBackup\n\n" + ex.ToString());
+            }
+        }
+
+        private void tsmExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }

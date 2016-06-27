@@ -11,6 +11,7 @@ namespace project_management_and_notes
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
     
     public partial class LoginInfo
     {
@@ -25,6 +26,19 @@ namespace project_management_and_notes
         public override string ToString()
         {
             return Url;
+        }
+
+        internal string toBackUpFormat()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(Id + " ");
+            sb.Append(ProjectId + " ");
+            sb.Append(Url + " ");
+            sb.Append(Username + " ");
+            sb.Append(Password + Environment.NewLine);
+
+            return sb.ToString();
         }
     }
 }

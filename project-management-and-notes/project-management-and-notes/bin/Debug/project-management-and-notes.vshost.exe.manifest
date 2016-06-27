@@ -68,14 +68,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="project-management-and-notes.exe" size="584704">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="project-management-and-notes.exe" size="592896">
       <assemblyIdentity name="project-management-and-notes" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>kCKKGFAOgnkN65ZNnYbvnhXB1Aq1JIHhaUBZVBCDamY=</dsig:DigestValue>
+        <dsig:DigestValue>rbtznafJMVYWTWODtlnok1HLbCpscOHChEXB/LtgafE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -94,7 +94,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>3q/dh1VOnmcBq1x4rE/2kdCFYQRhtD5FIhU3YRa1N6k=</dsig:DigestValue>
+      <dsig:DigestValue>K6YL1z6EKHAVkUd3vmEbwKgXCCopbb9VwF9Ml1WnYIE=</dsig:DigestValue>
     </hash>
   </file>
   <file name="ProjectsDb_log.ldf" size="802816" writeableType="applicationData">
@@ -103,7 +103,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>KuNF9mxj/ER6ehqvzDXq3efftsr79cEkKo/cBhPCJWI=</dsig:DigestValue>
+      <dsig:DigestValue>lSgYnwEPhRIyVYZZSlT7ZAz2o9OHVUY6tWc9LV411mI=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

@@ -11,6 +11,7 @@ namespace project_management_and_notes
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
     
     public partial class Project
     {
@@ -40,6 +41,29 @@ namespace project_management_and_notes
         public override string ToString()
         {
             return Name;
+        }
+
+        internal string toBackupFormat()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(Id + " ");
+            sb.Append(Name + " ");
+            sb.Append(Client + " ");
+            sb.Append(StartDate.Value.Date.ToShortDateString() + " ");
+            
+            if (FinishDate != null)
+            {
+                sb.Append(FinishDate.Value.Date.ToShortDateString() + " ");
+            }
+            else
+            {
+                sb.Append(" ");
+            }
+            
+            sb.Append(DeadLine.Value.Date.ToShortDateString() + Environment.NewLine);
+
+            return sb.ToString();
         }
     }
 }
