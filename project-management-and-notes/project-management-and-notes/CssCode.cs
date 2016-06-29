@@ -11,31 +11,24 @@ namespace project_management_and_notes
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
     
-    public partial class CSSCode
+    public partial class CssCode
     {
         public int Id { get; set; }
-        public string Code { get; set; }
         public string Function { get; set; }
+        public string Code { get; set; }
         public Nullable<int> ProjectId { get; set; }
     
         public virtual Project Project { get; set; }
 
+        internal string toBackUpFormat()
+        {
+            throw new NotImplementedException();
+        }
+
         public override string ToString()
         {
             return Function;
-        }
-
-        internal string toBackUpFormat()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(Id + "____");
-            sb.Append(ProjectId + "____");
-            sb.Append(Function + "____");
-            sb.Append(Code + "EOL\n");
-
-            return sb.ToString();
         }
     }
 }

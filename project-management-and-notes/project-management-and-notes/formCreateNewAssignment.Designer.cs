@@ -1,6 +1,6 @@
 ﻿namespace project_management_and_notes
 {
-    partial class CreateNewAssignmentForm
+    partial class formCreateNewAssignment
     {
         /// <summary>
         /// Required designer variable.
@@ -60,6 +60,7 @@
             this.tbAssignment.Name = "tbAssignment";
             this.tbAssignment.Size = new System.Drawing.Size(260, 20);
             this.tbAssignment.TabIndex = 1;
+            this.tbAssignment.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAssignment_KeyPress);
             // 
             // lblAssignment
             // 
@@ -70,7 +71,7 @@
             this.lblAssignment.TabIndex = 3;
             this.lblAssignment.Text = "Assignment";
             // 
-            // CreateNewAssignmentForm
+            // formCreateNewAssignment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -79,7 +80,7 @@
             this.Controls.Add(this.tbAssignment);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAdd);
-            this.Name = "CreateNewAssignmentForm";
+            this.Name = "formCreateNewAssignment";
             this.Text = "CreateNewAssignmentForm";
             this.ResumeLayout(false);
             this.PerformLayout();

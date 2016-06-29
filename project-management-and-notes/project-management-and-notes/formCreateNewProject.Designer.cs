@@ -1,6 +1,6 @@
 ﻿namespace project_management_and_notes
 {
-    partial class CreateNewProject
+    partial class formCreateNewProject
     {
         /// <summary>
         /// Required designer variable.
@@ -74,6 +74,7 @@
             this.dtpDeadLine.Name = "dtpDeadLine";
             this.dtpDeadLine.Size = new System.Drawing.Size(257, 20);
             this.dtpDeadLine.TabIndex = 2;
+            this.dtpDeadLine.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtpDeadLine_KeyPress);
             // 
             // tbProjectName
             // 
@@ -81,6 +82,7 @@
             this.tbProjectName.Name = "tbProjectName";
             this.tbProjectName.Size = new System.Drawing.Size(257, 20);
             this.tbProjectName.TabIndex = 0;
+            this.tbProjectName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbProjectName_KeyPress);
             // 
             // tbClientName
             // 
@@ -88,6 +90,7 @@
             this.tbClientName.Name = "tbClientName";
             this.tbClientName.Size = new System.Drawing.Size(257, 20);
             this.tbClientName.TabIndex = 1;
+            this.tbClientName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbClientName_KeyPress);
             // 
             // btnAdd
             // 
@@ -113,7 +116,7 @@
             // 
             this.epCreateNewProject.ContainerControl = this;
             // 
-            // CreateNewProject
+            // formCreateNewProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -126,7 +129,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "CreateNewProject";
+            this.Name = "formCreateNewProject";
             this.Text = "CreateNewProject";
             ((System.ComponentModel.ISupportInitialize)(this.epCreateNewProject)).EndInit();
             this.ResumeLayout(false);

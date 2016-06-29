@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace project_management_and_notes
 {
-    public partial class Form1 : Form
+    public partial class formMain : Form
     {
 
         private bool readyForCheckBoxChange;    // is used to determine if ListBox vith assignments should change selected property or not
@@ -27,7 +27,7 @@ namespace project_management_and_notes
                                                 //
                                                 // as described above, it is expected all the time except when calling refreshAssignments()
 
-        public Form1()
+        public formMain()
         {
             
             InitializeComponent();
@@ -41,10 +41,10 @@ namespace project_management_and_notes
 
             try
             {
-                using (ProjectsDbEntities entitties = new ProjectsDbEntities())
+                using (DBEntities context = new DBEntities())
                 {
                     List<Project> projects = new List<Project>();
-                    projects = entitties.Projects.ToList();
+                    projects = context.Projects.ToList();
 
                     foreach (Project p in projects)
                     {
@@ -111,11 +111,11 @@ namespace project_management_and_notes
 
             try
             {
-                using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                using (DBEntities context = new DBEntities())
                 {
-                    List<CSSCode> cssCodes = entities.CSSCodes.ToList();
+                    List<CssCode> cssCodes = context.CssCodes.ToList();
 
-                    foreach (CSSCode c in cssCodes)
+                    foreach (CssCode c in cssCodes)
                     {
                         if (c.ProjectId == projectId)
                         {
@@ -151,15 +151,15 @@ namespace project_management_and_notes
 
             try
             {
-                using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                using (DBEntities context = new DBEntities())
                 {
-                    List<Assignment> assignments = entities.Assignments.ToList();
+                    List<Assignment> assignments = context.Assignments.ToList();
 
                     foreach (Assignment a in assignments)
                     {
                         if (a.ProjectId == projectId)
                         {
-                            bool isDone = (bool)a.Done;
+                            bool isDone = (bool)a.IsDone;
                             clbAssignments.Items.Add(a, isDone);
                         }
                     }
@@ -196,9 +196,9 @@ namespace project_management_and_notes
 
             try
             {
-                using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                using (DBEntities context = new DBEntities())
                 {
-                    List<LoginInfo> logins = entities.LoginInfoes.ToList();
+                    List<LoginInfo> logins = context.LoginInfoes.ToList();
 
                     foreach (LoginInfo l in logins)
                     {
@@ -233,9 +233,9 @@ namespace project_management_and_notes
 
             try
             {
-                using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                using (DBEntities context = new DBEntities())
                 {
-                    List<Project> projects = entities.Projects.ToList();
+                    List<Project> projects = context.Projects.ToList();
 
                     foreach (Project p in projects)
                     {
@@ -243,7 +243,7 @@ namespace project_management_and_notes
                         {
                             projectFromDB = p;
                             projectFromDB.Status = getProjectStatus(projectFromDB.Id);
-                            entities.SaveChanges();
+                            context.SaveChanges();
                         }
                     }
                 }
@@ -289,7 +289,7 @@ namespace project_management_and_notes
 
             try
             {
-                using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                using (DBEntities entities = new DBEntities())
                 {
                     assignments = entities.Assignments.ToList();
                 }
@@ -303,7 +303,7 @@ namespace project_management_and_notes
             {
                 if (a.ProjectId == ID)
                 {
-                    if (a.Done == false)
+                    if (a.IsDone == false)
                     {
                         isUnfinished = true;
                     }
@@ -322,7 +322,7 @@ namespace project_management_and_notes
 
         private void lbCssCodes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CSSCode c = lbCssCodes.SelectedItem as CSSCode;
+            CssCode c = lbCssCodes.SelectedItem as CssCode;
             if (c != null)
             {
                 rtbCssCodeDetails.Text = c.Code;
@@ -337,16 +337,16 @@ namespace project_management_and_notes
 
         private void btnAddProject_Click(object sender, EventArgs e)
         {
-            CreateNewProject createProjectForm = new CreateNewProject();
+            formCreateNewProject createProjectForm = new formCreateNewProject();
             if (createProjectForm.ShowDialog() == DialogResult.OK)
             {
                 Project p = createProjectForm.GetProjet();
                 try
                 {
-                    using (ProjectsDbEntities entitties = new ProjectsDbEntities())
+                    using (DBEntities context = new DBEntities())
                     {
-                        entitties.Projects.Add(p);
-                        entitties.SaveChanges();
+                        context.Projects.Add(p);
+                        context.SaveChanges();
                     }
 
                     this.refreshFromDatabase();
@@ -361,7 +361,7 @@ namespace project_management_and_notes
 
         private void btnAddAssignment_Click(object sender, EventArgs e)
         {
-            CreateNewAssignmentForm createNewAssignment = new CreateNewAssignmentForm();
+            formCreateNewAssignment createNewAssignment = new formCreateNewAssignment();
 
             if (createNewAssignment.ShowDialog() == DialogResult.OK)
             {
@@ -373,10 +373,10 @@ namespace project_management_and_notes
                 
                 try
                 {
-                    using (ProjectsDbEntities entitties = new ProjectsDbEntities())
+                    using (DBEntities context = new DBEntities())
                     {
-                        entitties.Assignments.Add(a);
-                        entitties.SaveChanges();
+                        context.Assignments.Add(a);
+                        context.SaveChanges();
                     }
 
                     this.refreshAssignments();
@@ -396,15 +396,15 @@ namespace project_management_and_notes
             {
                 try
                 {
-                    using (ProjectsDbEntities entititties = new ProjectsDbEntities())
+                    using (DBEntities context = new DBEntities())
                     {
-                        List<Assignment> assignments = entititties.Assignments.ToList();
+                        List<Assignment> assignments = context.Assignments.ToList();
                         foreach (Assignment a in assignments)
                         {
                             if (a.Id == assignment.Id)
                             {
-                                a.Done = !a.Done;
-                                entititties.SaveChanges();
+                                a.IsDone = !a.IsDone;
+                                context.SaveChanges();
                             }
                         }
                         refreshAssignments();
@@ -413,7 +413,7 @@ namespace project_management_and_notes
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("clbAssignments_SelectedValueChanged\n\n" + e.ToString());
+                    MessageBox.Show("clbAssignments_SelectedValueChanged\n\n" + ex.ToString());
                 }
             }
             else
@@ -427,21 +427,21 @@ namespace project_management_and_notes
         {
             Assignment current = clbAssignments.SelectedItem as Assignment;
 
-            CreateNewAssignmentForm assignmentForm = new CreateNewAssignmentForm(current.ToDo);
+            formCreateNewAssignment assignmentForm = new formCreateNewAssignment(current.ToDo);
             if (assignmentForm.ShowDialog() == DialogResult.OK)
             {
                 Assignment modifiedAssignment = assignmentForm.GetAssignment();
                 try
                 {
-                    using (ProjectsDbEntities entitties = new ProjectsDbEntities())
+                    using (DBEntities context= new DBEntities())
                     {
-                        List<Assignment> assignments = entitties.Assignments.ToList();
+                        List<Assignment> assignments = context.Assignments.ToList();
                         foreach (Assignment a in assignments)
                         {
                             if (a.Id == current.Id)
                             {
                                 a.ToDo = modifiedAssignment.ToDo;
-                                entitties.SaveChanges();
+                                context.SaveChanges();
                                 refreshAssignments();
                             }
                         }
@@ -459,7 +459,7 @@ namespace project_management_and_notes
             Project p = lbProjects.SelectedItem as Project;
             int projectId = p.Id;
 
-            CreateNewLoginInfo createNewLoginInfo = new CreateNewLoginInfo();
+            formCreateNewLoginInfo createNewLoginInfo = new formCreateNewLoginInfo();
             if (createNewLoginInfo.ShowDialog() == DialogResult.OK)
             {
                 LoginInfo l = createNewLoginInfo.GetLoginInfo();
@@ -467,7 +467,7 @@ namespace project_management_and_notes
 
                 try
                 {
-                    using (ProjectsDbEntities entitties = new ProjectsDbEntities())
+                    using (DBEntities entitties = new DBEntities())
                     {
                         entitties.LoginInfoes.Add(l);
                         entitties.SaveChanges();
@@ -514,17 +514,17 @@ namespace project_management_and_notes
 
             int projectId = p.Id;
 
-            CreateNewCss newCssCodeForm = new CreateNewCss();
+            formCreateNewCss newCssCodeForm = new formCreateNewCss();
 
             if (newCssCodeForm.ShowDialog() == DialogResult.OK)
             {
-                CSSCode code = newCssCodeForm.GetCssCode();
+                CssCode code = newCssCodeForm.GetCssCode();
                 code.ProjectId = projectId;
 
-                using (ProjectsDbEntities entitties = new ProjectsDbEntities())
+                using (DBEntities context = new DBEntities())
                 {
-                    entitties.CSSCodes.Add(code);
-                    entitties.SaveChanges();
+                    context.CssCodes.Add(code);
+                    context.SaveChanges();
                 }
 
                 this.refreshCssCodes();
@@ -542,7 +542,7 @@ namespace project_management_and_notes
             }
             else
             {
-                using (ProjectsDbEntities context = new ProjectsDbEntities())
+                using (DBEntities context = new DBEntities())
                 {
                     try
                     {
@@ -564,11 +564,11 @@ namespace project_management_and_notes
             // MessageBox.Show("Not implemented");
             LoginInfo current = cbLoginInfo.SelectedItem as LoginInfo;
 
-            CreateNewLoginInfo loginForm = new CreateNewLoginInfo(current.Url, current.Username, current.Password);
+            formCreateNewLoginInfo loginForm = new formCreateNewLoginInfo(current.Url, current.Username, current.Password);
             if (loginForm.ShowDialog() == DialogResult.OK)
             {
                 LoginInfo modifiedInfo = loginForm.GetLoginInfo();
-                using (ProjectsDbEntities context = new ProjectsDbEntities())
+                using (DBEntities context = new DBEntities())
                 {
                     try
                     {
@@ -590,18 +590,18 @@ namespace project_management_and_notes
         private void btnEditCss_Click(object sender, EventArgs e)
         {
             // MessageBox.Show("Not implemented");
-            CSSCode courrent = lbCssCodes.SelectedItem as CSSCode;
+            CssCode courrent = lbCssCodes.SelectedItem as CssCode;
 
-            CreateNewCss formCss = new CreateNewCss(courrent.Function, courrent.Code);
+            formCreateNewCss formCss = new formCreateNewCss(courrent.Function, courrent.Code);
             if (formCss.ShowDialog() == DialogResult.OK)
             {
-                CSSCode modified = formCss.GetCssCode();
+                CssCode modified = formCss.GetCssCode();
                 try
                 {
-                    using (ProjectsDbEntities context = new ProjectsDbEntities())
+                    using (DBEntities context = new DBEntities())
                     {
-                        List<CSSCode> cssCodes = context.CSSCodes.ToList();
-                        foreach (CSSCode c in cssCodes)
+                        List<CssCode> cssCodes = context.CssCodes.ToList();
+                        foreach (CssCode c in cssCodes)
                         {
                             if (c.Id == courrent.Id)
                             {
@@ -632,7 +632,7 @@ namespace project_management_and_notes
 
             try
             {
-                using (ProjectsDbEntities context = new ProjectsDbEntities())
+                using (DBEntities context = new DBEntities())
                 {
                     List<Assignment> assignments = context.Assignments.ToList();
                     foreach (Assignment a in assignments)
@@ -650,9 +650,6 @@ namespace project_management_and_notes
             {
                 MessageBox.Show("btnDeleteAssignment\n\n" + ex.ToString());
             }
-
-
-
         }
 
         private void btnDeleteProject_Click(object sender, EventArgs e)
@@ -662,7 +659,7 @@ namespace project_management_and_notes
 
             try
             {
-                using (ProjectsDbEntities context = new ProjectsDbEntities())
+                using (DBEntities context = new DBEntities())
                 {   
                     // first delete Assignments and LoginInfoes associated with project that will be deleted
                     // then delete the project itself
@@ -720,14 +717,14 @@ namespace project_management_and_notes
         {
             Project courrent = lbProjects.SelectedItem as Project;
 
-            CreateNewProject formProject = new CreateNewProject(courrent.Name, courrent.Client, courrent.DeadLine.Value);
+            formCreateNewProject formProject = new formCreateNewProject(courrent.Name, courrent.Client, courrent.DeadLine.Value);
             if (formProject.ShowDialog() == DialogResult.OK)
             {
                 Project modified = formProject.GetProjet();
 
                 try
                 {
-                    using (ProjectsDbEntities context = new ProjectsDbEntities())
+                    using (DBEntities context = new DBEntities())
                     {
                         List<Project> projects = context.Projects.ToList();
                         foreach (Project p in projects)
@@ -766,10 +763,10 @@ namespace project_management_and_notes
             lbCssCodes.Items.Clear();
             try
             {
-                using (ProjectsDbEntities context = new ProjectsDbEntities())
+                using (DBEntities context = new DBEntities())
                 {
-                    List<CSSCode> cssCodes = context.CSSCodes.ToList();
-                    foreach (CSSCode c in cssCodes)
+                    List<CssCode> cssCodes = context.CssCodes.ToList();
+                    foreach (CssCode c in cssCodes)
                     {
                         if (c.Function.ToLower().Contains(query))
                         {
@@ -818,9 +815,9 @@ namespace project_management_and_notes
 
             try
             {
-                using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                using (DBEntities context = new DBEntities())
                 {
-                    projects = entities.Projects.ToList();
+                    projects = context.Projects.ToList();
                 }
             }
             catch (Exception ex)
@@ -945,7 +942,7 @@ namespace project_management_and_notes
             // the same project now has new random id
             // so we can not link them together
 
-            MessageBox.Show("Not working properly");
+            MessageBox.Show("To restore from backup, use SQL Management Studio");
 
             //clearDatabase();
             //refreshFromDatabase();
@@ -961,34 +958,34 @@ namespace project_management_and_notes
         {
             try
             {
-                using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                using (DBEntities context = new DBEntities())
                 {
-                    List<CSSCode> cssCodes = entities.CSSCodes.ToList();
-                    List<Assignment> assignments = entities.Assignments.ToList();
-                    List<LoginInfo> loginInfoes = entities.LoginInfoes.ToList();
-                    List<Project> projects = entities.Projects.ToList();
+                    List<CssCode> cssCodes = context.CssCodes.ToList();
+                    List<Assignment> assignments = context.Assignments.ToList();
+                    List<LoginInfo> loginInfoes = context.LoginInfoes.ToList();
+                    List<Project> projects = context.Projects.ToList();
 
-                    foreach (CSSCode c in cssCodes)
+                    foreach (CssCode c in cssCodes)
                     {
-                        entities.CSSCodes.Remove(c);
+                        context.CssCodes.Remove(c);
                     }
 
                     foreach (Assignment a in assignments)
                     {
-                        entities.Assignments.Remove(a);
+                        context.Assignments.Remove(a);
                     }
 
                     foreach (LoginInfo l in loginInfoes)
                     {
-                        entities.LoginInfoes.Remove(l);
+                        context.LoginInfoes.Remove(l);
                     }
 
                     foreach (Project p in projects)
                     {
-                        entities.Projects.Remove(p);
+                        context.Projects.Remove(p);
                     }
 
-                    entities.SaveChanges();
+                    context.SaveChanges();
                 }
             }
             catch (Exception ex)
@@ -1014,10 +1011,10 @@ namespace project_management_and_notes
                     l.Username = parts[3];
                     l.Password = parts[4];
 
-                    using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                    using (DBEntities context = new DBEntities())
                     {
-                        entities.LoginInfoes.Add(l);
-                        entities.SaveChanges();
+                        context.LoginInfoes.Add(l);
+                        context.SaveChanges();
                     }
                 }
             }
@@ -1039,17 +1036,17 @@ namespace project_management_and_notes
                     if (part.Length > 0)
                     {
                         string[] actualData = Regex.Split(part, "____");
-                        CSSCode css = new CSSCode();
+                        CssCode css = new CssCode();
                         
                         css.Id = Int32.Parse(actualData[0]);
                         css.ProjectId = Int32.Parse(actualData[1]);
                         css.Function = actualData[2];
                         css.Code = actualData[3];
 
-                        using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                        using (DBEntities context = new DBEntities())
                         {
-                            entities.CSSCodes.Add(css);
-                            entities.SaveChanges();
+                            context.CssCodes.Add(css);
+                            context.SaveChanges();
                         }
                     }
                 }
@@ -1077,14 +1074,14 @@ namespace project_management_and_notes
                     
                     if (parts[3] == "False")
                     {
-                        assignment.Done = false;
+                        assignment.IsDone = false;
                     }
                     else
                     {
-                        assignment.Done = true;
+                        assignment.IsDone = true;
                     }
 
-                    using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                    using (DBEntities entities = new DBEntities())
                     {
                         entities.Assignments.Add(assignment);
                         entities.SaveChanges();
@@ -1123,10 +1120,10 @@ namespace project_management_and_notes
                     }
                     p.DeadLine = DateTime.Parse(parts[5]);
 
-                    using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                    using (DBEntities context= new DBEntities())
                     {
-                        entities.Projects.Add(p);
-                        entities.SaveChanges();
+                        context.Projects.Add(p);
+                        context.SaveChanges();
                     }
                 }
 
@@ -1141,7 +1138,7 @@ namespace project_management_and_notes
         private void tsmExportBackup_Click(object sender, EventArgs e)
         {
             // make .bak of .mdf file instead of making backup as plain text
-            MessageBox.Show("Not working properly");
+            MessageBox.Show("Create backup using SQL Management Studio.");
             
             //string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
@@ -1158,9 +1155,9 @@ namespace project_management_and_notes
                 List<Project> projects = new List<Project>();
                 string result = "";
 
-                using (ProjectsDbEntities entitties = new ProjectsDbEntities())
+                using (DBEntities context = new DBEntities())
                 {
-                    projects = entitties.Projects.ToList();
+                    projects = context.Projects.ToList();
                 }
 
                 foreach (Project p in projects)
@@ -1183,7 +1180,7 @@ namespace project_management_and_notes
                 List<Assignment> assignments = new List<Assignment>();
                 string result = "";
 
-                using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                using (DBEntities entities = new DBEntities())
                 {
                     assignments = entities.Assignments.ToList();
                 }
@@ -1205,15 +1202,15 @@ namespace project_management_and_notes
         {
             try
             {
-                List<CSSCode> cssCodes = new List<CSSCode>();
+                List<CssCode> cssCodes = new List<CssCode>();
                 string result = "";
 
-                using(ProjectsDbEntities entities = new ProjectsDbEntities())
+                using(DBEntities context = new DBEntities())
                 {
-                    cssCodes = entities.CSSCodes.ToList();   
+                    cssCodes = context.CssCodes.ToList();   
                 }
 
-                foreach (CSSCode css in cssCodes)
+                foreach (CssCode css in cssCodes)
                 {
                     result += css.toBackUpFormat();
                 }
@@ -1233,9 +1230,9 @@ namespace project_management_and_notes
                 List<LoginInfo> loginInfoes = new List<LoginInfo>();
                 string result = "";
 
-                using (ProjectsDbEntities entities = new ProjectsDbEntities())
+                using (DBEntities context = new DBEntities())
                 {
-                    loginInfoes = entities.LoginInfoes.ToList();
+                    loginInfoes = context.LoginInfoes.ToList();
                 }
 
                 foreach (LoginInfo l in loginInfoes)

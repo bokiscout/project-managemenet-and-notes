@@ -1,6 +1,6 @@
 ﻿namespace project_management_and_notes
 {
-    partial class Form1
+    partial class formMain
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formMain));
             this.gbProjects = new System.Windows.Forms.GroupBox();
             this.btnEditProject = new System.Windows.Forms.Button();
             this.btnDeleteProject = new System.Windows.Forms.Button();

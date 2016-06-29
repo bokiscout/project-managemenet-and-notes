@@ -13,10 +13,10 @@ namespace project_management_and_notes
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ProjectsDbEntities : DbContext
+    public partial class DBEntities : DbContext
     {
-        public ProjectsDbEntities()
-            : base("name=ProjectsDbEntities")
+        public DBEntities()
+            : base("name=DBEntities")
         {
         }
     
@@ -26,7 +26,7 @@ namespace project_management_and_notes
         }
     
         public virtual DbSet<Assignment> Assignments { get; set; }
-        public virtual DbSet<CSSCode> CSSCodes { get; set; }
+        public virtual DbSet<CssCode> CssCodes { get; set; }
         public virtual DbSet<LoginInfo> LoginInfoes { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
     }

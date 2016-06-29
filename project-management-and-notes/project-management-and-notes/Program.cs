@@ -18,7 +18,7 @@ namespace project_management_and_notes
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Form1());
+                Application.Run(new formMain());
             }
             catch(Exception e){
                 //MessageBox.Show("Report exception");

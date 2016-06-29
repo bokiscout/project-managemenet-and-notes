@@ -1,6 +1,6 @@
 ﻿namespace project_management_and_notes
 {
-    partial class CreateNewLoginInfo
+    partial class formCreateNewLoginInfo
     {
         /// <summary>
         /// Required designer variable.
@@ -71,6 +71,7 @@
             this.tbUrl.Name = "tbUrl";
             this.tbUrl.Size = new System.Drawing.Size(257, 20);
             this.tbUrl.TabIndex = 0;
+            this.tbUrl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbUrl_KeyPress);
             // 
             // tbUserName
             // 
@@ -78,6 +79,7 @@
             this.tbUserName.Name = "tbUserName";
             this.tbUserName.Size = new System.Drawing.Size(257, 20);
             this.tbUserName.TabIndex = 1;
+            this.tbUserName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbUserName_KeyPress);
             // 
             // tbPassword
             // 
@@ -85,6 +87,7 @@
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(257, 20);
             this.tbPassword.TabIndex = 2;
+            this.tbPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPassword_KeyPress);
             // 
             // btnAdd
             // 
@@ -106,7 +109,7 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // CreateNewLoginInfo
+            // formCreateNewLoginInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -119,7 +122,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "CreateNewLoginInfo";
+            this.Name = "formCreateNewLoginInfo";
             this.Text = "CreateNewLoginInfo";
             this.ResumeLayout(false);
             this.PerformLayout();

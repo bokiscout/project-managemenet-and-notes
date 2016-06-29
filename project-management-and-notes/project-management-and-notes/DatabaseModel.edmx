@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProjerctManagementAndNotesDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ProjerctManagementAndNotesDBModelStoreContainer">
+    <EntitySet Name="Assignments" EntityType="ProjerctManagementAndNotesDBModel.Store.Assignments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CssCodes" EntityType="ProjerctManagementAndNotesDBModel.Store.CssCodes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LoginInfoes" EntityType="ProjerctManagementAndNotesDBModel.Store.LoginInfoes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Projects" EntityType="ProjerctManagementAndNotesDBModel.Store.Projects" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Assignment_ToTable" Association="ProjerctManagementAndNotesDBModel.Store.FK_Assignment_ToTable">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Assignment" EntitySet="Assignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CssCode_ToTable" Association="ProjerctManagementAndNotesDBModel.Store.FK_CssCode_ToTable">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="CssCode" EntitySet="CssCodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoginInfo_ToTable" Association="ProjerctManagementAndNotesDBModel.Store.FK_LoginInfo_ToTable">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="LoginInfo" EntitySet="LoginInfoes" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Assignments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsDone" Type="bit" Nullable="true" />
+    <Property Name="ToDo" Type="varchar(max)" Nullable="true" />
+    <Property Name="ProjectId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="CssCodes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Function" Type="varchar(max)" Nullable="true" />
+    <Property Name="Code" Type="varchar(max)" Nullable="true" />
+    <Property Name="ProjectId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="LoginInfoes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Url" Type="varchar(max)" Nullable="true" />
+    <Property Name="Username" Type="varchar(max)" Nullable="true" />
+    <Property Name="Password" Type="varchar(max)" Nullable="true" />
+    <Property Name="ProjectId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Projects">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar(max)" Nullable="true" />
+    <Property Name="Client" Type="varchar(max)" Nullable="true" />
+    <Property Name="StartDate" Type="datetime" Nullable="true" />
+    <Property Name="FinishDate" Type="datetime" Nullable="true" />
+    <Property Name="DeadLine" Type="datetime" Nullable="true" />
+    <Property Name="Status" Type="bit" Nullable="true" />
+  </EntityType>
+  <Association Name="FK_Assignment_ToTable">
+    <End Role="Project" Type="ProjerctManagementAndNotesDBModel.Store.Projects" Multiplicity="0..1" />
+    <End Role="Assignment" Type="ProjerctManagementAndNotesDBModel.Store.Assignments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Assignment">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CssCode_ToTable">
+    <End Role="Project" Type="ProjerctManagementAndNotesDBModel.Store.Projects" Multiplicity="0..1" />
+    <End Role="CssCode" Type="ProjerctManagementAndNotesDBModel.Store.CssCodes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CssCode">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoginInfo_ToTable">
+    <End Role="Project" Type="ProjerctManagementAndNotesDBModel.Store.Projects" Multiplicity="0..1" />
+    <End Role="LoginInfo" Type="ProjerctManagementAndNotesDBModel.Store.LoginInfoes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LoginInfo">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProjerctManagementAndNotesDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Assignments" EntityType="ProjerctManagementAndNotesDBModel.Assignment" />
+          <EntitySet Name="CssCodes" EntityType="ProjerctManagementAndNotesDBModel.CssCode" />
+          <EntitySet Name="LoginInfoes" EntityType="ProjerctManagementAndNotesDBModel.LoginInfo" />
+          <EntitySet Name="Projects" EntityType="ProjerctManagementAndNotesDBModel.Project" />
+          <AssociationSet Name="FK_Assignment_ToTable" Association="ProjerctManagementAndNotesDBModel.FK_Assignment_ToTable">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Assignment" EntitySet="Assignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CssCode_ToTable" Association="ProjerctManagementAndNotesDBModel.FK_CssCode_ToTable">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="CssCode" EntitySet="CssCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoginInfo_ToTable" Association="ProjerctManagementAndNotesDBModel.FK_LoginInfo_ToTable">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="LoginInfo" EntitySet="LoginInfoes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Assignment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsDone" Type="Boolean" />
+          <Property Name="ToDo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectId" Type="Int32" />
+          <NavigationProperty Name="Project" Relationship="ProjerctManagementAndNotesDBModel.FK_Assignment_ToTable" FromRole="Assignment" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="CssCode">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Function" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectId" Type="Int32" />
+          <NavigationProperty Name="Project" Relationship="ProjerctManagementAndNotesDBModel.FK_CssCode_ToTable" FromRole="CssCode" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="LoginInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectId" Type="Int32" />
+          <NavigationProperty Name="Project" Relationship="ProjerctManagementAndNotesDBModel.FK_LoginInfo_ToTable" FromRole="LoginInfo" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Client" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="FinishDate" Type="DateTime" Precision="3" />
+          <Property Name="DeadLine" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Assignments" Relationship="ProjerctManagementAndNotesDBModel.FK_Assignment_ToTable" FromRole="Project" ToRole="Assignment" />
+          <NavigationProperty Name="CssCodes" Relationship="ProjerctManagementAndNotesDBModel.FK_CssCode_ToTable" FromRole="Project" ToRole="CssCode" />
+          <NavigationProperty Name="LoginInfoes" Relationship="ProjerctManagementAndNotesDBModel.FK_LoginInfo_ToTable" FromRole="Project" ToRole="LoginInfo" />
+          <Property Name="Status" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_Assignment_ToTable">
+          <End Type="ProjerctManagementAndNotesDBModel.Project" Role="Project" Multiplicity="0..1" />
+          <End Type="ProjerctManagementAndNotesDBModel.Assignment" Role="Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Assignment">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CssCode_ToTable">
+          <End Type="ProjerctManagementAndNotesDBModel.Project" Role="Project" Multiplicity="0..1" />
+          <End Type="ProjerctManagementAndNotesDBModel.CssCode" Role="CssCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CssCode">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoginInfo_ToTable">
+          <End Type="ProjerctManagementAndNotesDBModel.Project" Role="Project" Multiplicity="0..1" />
+          <End Type="ProjerctManagementAndNotesDBModel.LoginInfo" Role="LoginInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LoginInfo">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProjerctManagementAndNotesDBModelStoreContainer" CdmEntityContainer="DBEntities">
+    <EntitySetMapping Name="Assignments">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjerctManagementAndNotesDBModel.Assignment)">
+        <MappingFragment StoreEntitySet="Assignments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IsDone" ColumnName="IsDone" />
+          <ScalarProperty Name="ToDo" ColumnName="ToDo" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CssCodes">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjerctManagementAndNotesDBModel.CssCode)">
+        <MappingFragment StoreEntitySet="CssCodes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Function" ColumnName="Function" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoginInfoes">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjerctManagementAndNotesDBModel.LoginInfo)">
+        <MappingFragment StoreEntitySet="LoginInfoes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projects">
+      <EntityTypeMapping TypeName="IsTypeOf(ProjerctManagementAndNotesDBModel.Project)">
+        <MappingFragment StoreEntitySet="Projects">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+          <ScalarProperty Name="DeadLine" ColumnName="DeadLine" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

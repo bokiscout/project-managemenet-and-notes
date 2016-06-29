@@ -11,31 +11,24 @@ namespace project_management_and_notes
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
     
     public partial class Assignment
     {
         public int Id { get; set; }
+        public Nullable<bool> IsDone { get; set; }
         public string ToDo { get; set; }
-        public Nullable<bool> Done { get; set; }
         public Nullable<int> ProjectId { get; set; }
     
         public virtual Project Project { get; set; }
 
+        internal string toBackUpFormat()
+        {
+            throw new NotImplementedException();
+        }
+
         public override string ToString()
         {
             return ToDo;
-        }
-
-        internal string toBackUpFormat()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(Id + " ");
-            sb.Append(ProjectId + " ");
-            sb.Append(ToDo + " ");
-            sb.Append(Done + Environment.NewLine);
-
-            return sb.ToString();
         }
     }
 }

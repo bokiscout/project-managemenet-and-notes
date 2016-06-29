@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0874ca7ab94d4085a0de2de0000e3ed2" Name="Diagram1" >
+        <EntityTypeShape EntityType="ProjerctManagementAndNotesDBModel.Assignment" Width="1.5" PointX="3" PointY="1.25" />
+        <EntityTypeShape EntityType="ProjerctManagementAndNotesDBModel.CssCode" Width="1.5" PointX="3" PointY="3.875" />
+        <EntityTypeShape EntityType="ProjerctManagementAndNotesDBModel.LoginInfo" Width="1.5" PointX="3" PointY="6.625" />
+        <EntityTypeShape EntityType="ProjerctManagementAndNotesDBModel.Project" Width="1.5" PointX="0.75" PointY="3.625" />
+        <AssociationConnector Association="ProjerctManagementAndNotesDBModel.FK_Assignment_ToTable" />
+        <AssociationConnector Association="ProjerctManagementAndNotesDBModel.FK_CssCode_ToTable" />
+        <AssociationConnector Association="ProjerctManagementAndNotesDBModel.FK_LoginInfo_ToTable" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

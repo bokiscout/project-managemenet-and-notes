@@ -1,6 +1,6 @@
 ﻿namespace project_management_and_notes
 {
-    partial class CreateNewCss
+    partial class formCreateNewCss
     {
         /// <summary>
         /// Required designer variable.
@@ -52,6 +52,7 @@
             this.rbCode.Size = new System.Drawing.Size(728, 448);
             this.rbCode.TabIndex = 2;
             this.rbCode.Text = "";
+            this.rbCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.rbCode_KeyPress);
             // 
             // tbFunction
             // 
@@ -59,6 +60,7 @@
             this.tbFunction.Name = "tbFunction";
             this.tbFunction.Size = new System.Drawing.Size(728, 20);
             this.tbFunction.TabIndex = 1;
+            this.tbFunction.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFunction_KeyPress);
             // 
             // label2
             // 
@@ -81,7 +83,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(668, 548);
+            this.btnCancel.Location = new System.Drawing.Point(96, 548);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 4;
@@ -89,7 +91,7 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // CreateNewCss
+            // formCreateNewCss
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -100,8 +102,10 @@
             this.Controls.Add(this.tbFunction);
             this.Controls.Add(this.rbCode);
             this.Controls.Add(this.label1);
-            this.Name = "CreateNewCss";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "formCreateNewCss";
             this.Text = "CreateNewCss";
+            this.Resize += new System.EventHandler(this.formCreateNewCss_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 
