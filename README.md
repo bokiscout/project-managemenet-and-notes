@@ -3,9 +3,9 @@ Project management and notes is simple program writen for friend of mine to help
 
 ## How to use
 - Make sure that all dependencies are installed proprely (see them below).
-- Download latest release.
+- Download latest release from [here](https://github.com/bokiscout/project-managemenet-and-notes/releases).
+- Use provided script to generate the database.
 - Instal the program by double clicking setup.
-- Use provided script to generate the database for You.
 
 ## Dependencies
 - SQL Server 2012 Express
